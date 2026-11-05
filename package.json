@@ -1,0 +1,42 @@
+{
+  "name": "silver-fox-us",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Website for Silver Fox LLC (silver-fox-consulting.us)",
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "prebuild": "node scripts/check-copy.mjs && node scripts/check-launch.mjs",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "typecheck": "next typegen && tsc --noEmit",
+    "format": "prettier --write .",
+    "check:copy": "node scripts/check-copy.mjs",
+    "check:launch": "node scripts/check-launch.mjs --force",
+    "ci": "npm run check:copy && npm run lint && npm run typecheck && npm run build"
+  },
+  "dependencies": {
+    "@vercel/analytics": "2.0.1",
+    "lucide-react": "1.61.0",
+    "motion": "14.5.0",
+    "next": "16.4.5",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "resend": "6.34.1",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@tailwindcss/turbopack": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.4.5",
+    "prettier": "3.9.10",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}

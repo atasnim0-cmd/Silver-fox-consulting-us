@@ -1,0 +1,229 @@
+@import "tailwindcss";
+
+/*
+ * Silver Fox US design tokens.
+ * Navy and white carry the layout. Flare orange is the brand accent from the
+ * logo and is used sparingly: marks, rules, focus rings and small highlights.
+ * Contrast notes: body (#3c4859) on white is about 9:1. Flare on white is about
+ * 3:1, so it is never used for small text on light backgrounds; flare-700 is.
+ */
+@theme {
+  --font-sans: var(--font-public-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-serif: var(--font-source-serif), Georgia, "Times New Roman", serif;
+
+  --color-navy-950: #060c18;
+  --color-navy-900: #0a1528;
+  --color-navy-800: #111f39;
+  --color-navy-700: #1a2c4e;
+  --color-navy-600: #2a4170;
+  --color-steel-500: #5b6b85;
+  --color-steel-400: #8592a9;
+  --color-silver-300: #b7c1cf;
+  --color-silver-200: #d3dae4;
+  --color-silver-100: #e8ecf2;
+
+  --color-mist: #f4f6f9;
+  --color-line: #dde3eb;
+  --color-ink: #0b1220;
+  --color-body: #3c4859;
+  --color-muted: #5d697b;
+
+  --color-flare: #ff5a36;
+  --color-flare-600: #ef4a25;
+  --color-flare-700: #c13819;
+  --color-sky: #6d9cff;
+  --color-amber: #f0b941;
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --animate-rise: rise 0.9s var(--ease-out-soft) both;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    background: #fff;
+    color: var(--color-body);
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: var(--color-ink);
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--color-flare) 28%, transparent);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-flare);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  .container-page {
+    width: 100%;
+    max-width: 80rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 640px) {
+    .container-page {
+      padding-inline: 2rem;
+    }
+  }
+
+  /* Small uppercase label with an orange tick, used above section headings. */
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-flare-700);
+  }
+  .eyebrow::before {
+    content: "";
+    width: 1.25rem;
+    height: 2px;
+    background: var(--color-flare);
+  }
+  .eyebrow-dark {
+    color: var(--color-silver-300);
+  }
+
+  .display {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    line-height: 1.08;
+  }
+
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.35s var(--ease-out-soft);
+  }
+  .link-underline:hover {
+    background-size: 100% 1px;
+  }
+
+  /* Long-form legal text. */
+  .prose-legal h2 {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+  }
+  .prose-legal h3 {
+    font-weight: 600;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .prose-legal p,
+  .prose-legal ul {
+    margin-bottom: 1rem;
+  }
+  .prose-legal ul {
+    list-style: disc;
+    padding-left: 1.25rem;
+  }
+  .prose-legal li {
+    margin-bottom: 0.35rem;
+  }
+  .prose-legal a {
+    color: var(--color-flare-700);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+}
+
+/*
+ * Scroll reveal.
+ * Uses CSS scroll-driven animations where the browser supports them and
+ * leaves content fully visible everywhere else. No JavaScript, so nothing is
+ * ever hidden if a script fails to load.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: rise linear both;
+      animation-timeline: view();
+      animation-range: entry 5% entry 40%;
+    }
+  }
+
+  .hero-rise > * {
+    animation: var(--animate-rise);
+  }
+  .hero-rise > *:nth-child(2) {
+    animation-delay: 0.08s;
+  }
+  .hero-rise > *:nth-child(3) {
+    animation-delay: 0.16s;
+  }
+  .hero-rise > *:nth-child(4) {
+    animation-delay: 0.24s;
+  }
+  .hero-rise > *:nth-child(5) {
+    animation-delay: 0.32s;
+  }
+
+  .hero-zoom {
+    animation: hero-zoom 14s var(--ease-out-soft) both;
+  }
+}
+
+@keyframes hero-zoom {
+  from {
+    transform: scale(1.06);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
