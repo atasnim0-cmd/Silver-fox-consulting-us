@@ -40,12 +40,12 @@ export default function ServicesPage() {
         <div className="container-page">
           <ul className="divide-y divide-line border-y border-line">
             {services.map((s, i) => (
-              <li key={s.slug} className="reveal">
+              <li key={s.slug}>
                 <Link
                   href={`/services/${s.slug}`}
                   className="group grid gap-4 py-9 transition-colors sm:grid-cols-[4rem_1fr_auto] sm:items-center sm:gap-8"
                 >
-                  <span className="font-serif text-2xl text-flare-700">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="font-serif text-2xl text-accent-700">{String(i + 1).padStart(2, "0")}</span>
                   <span>
                     <span className="block text-2xl font-semibold text-ink group-hover:text-navy-700">{s.name}</span>
                     <span className="mt-2 block max-w-2xl leading-relaxed">{s.blurb}</span>
@@ -59,7 +59,7 @@ export default function ServicesPage() {
                     Explore
                     <ArrowRight
                       aria-hidden="true"
-                      className="h-5 w-5 text-flare transition-transform duration-200 group-hover:translate-x-1"
+                      className="h-5 w-5 text-accent-500 transition-transform duration-200 group-hover:translate-x-1"
                     />
                   </span>
                 </Link>
@@ -76,10 +76,10 @@ export default function ServicesPage() {
             title="Each practice makes the others better."
             intro="Findings move between teams instead of sitting in separate reports. That is how a penetration test ends up improving detection, and how an incident ends up improving architecture."
           />
-          <ol className="reveal space-y-3">
+          <ol className="space-y-3">
             {loop.map((step, i) => (
               <li key={step} className="flex items-center gap-4 rounded-md bg-white px-5 py-4 text-ink">
-                <span className="font-serif text-lg text-flare-700">{String(i + 1).padStart(2, "0")}</span>
+                <span className="font-serif text-lg text-accent-700">{String(i + 1).padStart(2, "0")}</span>
                 {step}
               </li>
             ))}

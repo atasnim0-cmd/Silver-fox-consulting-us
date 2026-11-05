@@ -10,6 +10,7 @@ import { SectionHeader } from "@/components/sections/SectionHeader";
 import { StepList } from "@/components/sections/StepList";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ButtonLink } from "@/components/ui/ButtonLink";
+import { ScrollProgress } from "@/components/motion-primitives/scroll-progress";
 import { frameworks, getFramework } from "@/content/compliance";
 import { serviceSchema } from "@/lib/schema";
 import { pageMetadata } from "@/lib/seo";
@@ -33,6 +34,7 @@ export default async function FrameworkPage({ params }: PageProps<"/compliance/[
 
   return (
     <>
+      <ScrollProgress />
       <PageHero
         crumbs={[
           { name: "Compliance", path: "/compliance" },
@@ -52,22 +54,24 @@ export default async function FrameworkPage({ params }: PageProps<"/compliance/[
           </>
         }
         aside={
-          <dl className="rounded-lg border border-white/15 bg-navy-900/70 p-7 backdrop-blur">
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-steel-400">At a glance</p>
-            {f.facts.map((fact) => (
-              <div key={fact.label} className="mt-5 border-t border-white/10 pt-4 first-of-type:mt-4">
-                <dt className="text-sm text-steel-400">{fact.label}</dt>
-                <dd className="mt-1 text-[0.975rem] leading-snug text-white">{fact.value}</dd>
-              </div>
-            ))}
-          </dl>
+          <div className="rounded-lg border border-white/15 bg-navy-900/70 p-7 shadow-[0_24px_48px_-24px_rgba(0,0,0,0.6)] backdrop-blur">
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent-300">At a glance</p>
+            <dl className="mt-1">
+              {f.facts.map((fact) => (
+                <div key={fact.label} className="mt-4 border-t border-white/10 pt-4">
+                  <dt className="text-sm text-silver-300">{fact.label}</dt>
+                  <dd className="mt-1 text-[0.975rem] leading-snug text-white">{fact.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
         }
       />
 
       <section className="py-20 lg:py-24">
         <div className="container-page grid gap-10 lg:grid-cols-[1fr_1.4fr] lg:gap-20">
           <SectionHeader eyebrow={f.short} title={f.overview.title} />
-          <div className="reveal space-y-5 text-lg leading-relaxed lg:pt-10">
+          <div className="space-y-5 text-lg leading-relaxed lg:pt-10">
             {f.overview.body.map((p) => (
               <p key={p}>{p}</p>
             ))}
@@ -88,8 +92,8 @@ export default async function FrameworkPage({ params }: PageProps<"/compliance/[
 
       {f.boundary && (
         <section className="bg-navy-950 py-14">
-          <div className="container-page reveal flex flex-col gap-6 md:flex-row md:items-start">
-            <Scale aria-hidden="true" className="h-8 w-8 shrink-0 text-flare" strokeWidth={1.5} />
+          <div className="container-page flex flex-col gap-6 md:flex-row md:items-start">
+            <Scale aria-hidden="true" className="h-8 w-8 shrink-0 text-accent-500" strokeWidth={1.5} />
             <div className="max-w-3xl">
               <h2 className="font-serif text-2xl text-white">{f.boundary.title}</h2>
               <p className="mt-3 text-lg leading-relaxed text-silver-300">{f.boundary.body}</p>
@@ -117,6 +121,7 @@ export default async function FrameworkPage({ params }: PageProps<"/compliance/[
 
       <FaqList faqs={f.faqs} />
       <CtaBand
+        tone="light"
         title={`Find out where you stand on ${f.short}.`}
         body="A readiness review shows what an assessor would find today and what it will take to close the gaps."
         action={{ label: "Start a readiness review", href: `/contact?topic=${f.slug}` }}

@@ -12,7 +12,7 @@ const initial: ContactState = { status: "idle" };
 const groups = Array.from(new Set(TOPICS.map((t) => t.group)));
 
 const inputBase =
-  "mt-2 block w-full rounded-md border bg-white px-3.5 py-3 text-[0.975rem] text-ink shadow-sm transition-colors placeholder:text-steel-400 focus:border-navy-700 focus:outline-none focus:ring-2 focus:ring-navy-700/20";
+  "mt-2 block w-full rounded-md border bg-white px-3.5 py-3 text-base text-ink shadow-sm transition-colors placeholder:text-steel-500 focus:border-accent-600 focus:outline-none focus:ring-2 focus:ring-accent-500/25";
 
 function Field({
   id,
@@ -35,7 +35,7 @@ function Field({
       </label>
       {children}
       {error && (
-        <p id={`${id}-error`} className="mt-1.5 text-sm font-medium text-flare-700">
+        <p id={`${id}-error`} className="mt-1.5 text-sm font-medium text-accent-700">
           {error}
         </p>
       )}
@@ -73,7 +73,7 @@ export function ContactForm() {
   if (state.status === "success") {
     return (
       <div role="status" className="rounded-lg border border-line bg-white p-8 sm:p-10">
-        <CheckCircle2 aria-hidden="true" className="h-10 w-10 text-flare-700" strokeWidth={1.5} />
+        <CheckCircle2 aria-hidden="true" className="h-10 w-10 text-accent-700" strokeWidth={1.5} />
         <h2 className="display mt-5 text-3xl">Thanks. Your message is on its way.</h2>
         <p className="mt-4 text-lg leading-relaxed">
           A member of our team will review it and get back to you to set up a conversation. If something is urgent,
@@ -89,7 +89,7 @@ export function ContactForm() {
   const e = state.errors ?? {};
   const v = state.values ?? {};
   const describedBy = (k: string) => (e[k] ? `${k}-error` : undefined);
-  const border = (k: string) => (e[k] ? "border-flare-700" : "border-silver-200");
+  const border = (k: string) => (e[k] ? "border-accent-700" : "border-silver-200");
 
   return (
     // Keyed by attempt: React only applies a <select>'s defaultValue on mount, so the form
@@ -104,8 +104,8 @@ export function ContactForm() {
 
       {state.status === "error" && state.message && (
         <p
-          role="alert"
-          className="mt-5 rounded-md border-l-2 border-flare-700 bg-white px-4 py-3 text-[0.95rem] text-ink"
+          aria-live="polite"
+          className="mt-5 rounded-md border-l-2 border-accent-700 bg-white px-4 py-3 text-[0.95rem] text-ink"
         >
           {state.message}
         </p>
@@ -144,6 +144,8 @@ export function ContactForm() {
             name="email"
             type="email"
             autoComplete="email"
+            spellCheck={false}
+            inputMode="email"
             required
             defaultValue={v.email}
             aria-invalid={Boolean(e.email)}
@@ -238,7 +240,7 @@ export function ContactForm() {
           </span>
         </label>
         {e.consent && (
-          <p id="consent-error" className="mt-1.5 text-sm font-medium text-flare-700">
+          <p id="consent-error" className="mt-1.5 text-sm font-medium text-accent-700">
             {e.consent}
           </p>
         )}
@@ -255,7 +257,7 @@ export function ContactForm() {
         className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-md bg-navy-900 px-6 py-3.5 font-semibold text-white transition-colors hover:bg-navy-700 disabled:cursor-not-allowed disabled:opacity-70"
       >
         {pending && <Loader2 aria-hidden="true" className="h-4 w-4 animate-spin" />}
-        {pending ? "Sending" : "Send message"}
+        Send message
       </button>
     </form>
   );

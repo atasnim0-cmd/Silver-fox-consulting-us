@@ -21,7 +21,7 @@ export function RelatedServices({ slugs, title = "Related services" }: { slugs: 
           <li key={s.slug}>
             <Link
               href={`/services/${s.slug}`}
-              className="group flex h-full items-start justify-between gap-6 rounded-lg border border-line bg-white p-6 transition-all duration-300 hover:border-navy-900/25 hover:shadow-[0_16px_32px_-20px_rgba(10,21,40,0.35)]"
+              className="group flex h-full items-start justify-between gap-6 rounded-lg border border-line bg-white p-6 transition-[transform,box-shadow,border-color] duration-300 hover:border-navy-900/25 hover:shadow-[0_16px_32px_-20px_rgba(10,21,40,0.35)]"
             >
               <span>
                 <span className="block text-lg font-semibold text-ink">{s.name}</span>
@@ -29,7 +29,7 @@ export function RelatedServices({ slugs, title = "Related services" }: { slugs: 
               </span>
               <ArrowRight
                 aria-hidden="true"
-                className="mt-1 h-5 w-5 shrink-0 text-flare transition-transform duration-200 group-hover:translate-x-1"
+                className="mt-1 h-5 w-5 shrink-0 text-accent-500 transition-transform duration-200 group-hover:translate-x-1"
               />
             </Link>
           </li>
@@ -100,7 +100,7 @@ export function RelatedPlatforms({ slugs }: { slugs: string[] }) {
                 <span className="font-bold tracking-[0.06em] text-ink">{p.name}</span>
                 <span className="ml-2 text-sm text-muted">{p.tagline}</span>
               </span>
-              <ArrowRight aria-hidden="true" className="h-4 w-4 shrink-0 text-flare" />
+              <ArrowRight aria-hidden="true" className="h-4 w-4 shrink-0 text-accent-500" />
             </Link>
           </li>
         ))}

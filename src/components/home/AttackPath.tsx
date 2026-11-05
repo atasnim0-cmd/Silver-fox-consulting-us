@@ -44,7 +44,7 @@ export function AttackPath() {
         <div className="relative">
           <div className="absolute left-[10%] right-[10%] top-5 hidden h-px bg-white/15 lg:block" aria-hidden="true">
             <m.div
-              className="h-full origin-left bg-flare"
+              className="h-full origin-left bg-accent-500"
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true, amount: 0.6 }}
@@ -53,7 +53,7 @@ export function AttackPath() {
           </div>
           <div className="absolute bottom-10 left-5 top-5 w-px bg-white/15 lg:hidden" aria-hidden="true">
             <m.div
-              className="h-full w-full origin-top bg-flare"
+              className="h-full w-full origin-top bg-accent-500"
               initial={{ scaleY: 0 }}
               whileInView={{ scaleY: 1 }}
               viewport={{ once: true, amount: 0.2 }}
@@ -63,26 +63,22 @@ export function AttackPath() {
 
           <ol className="grid gap-10 lg:grid-cols-5 lg:gap-6">
             {steps.map((s, i) => (
-              <m.li
+              <li
                 key={s.stage}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.4 }}
-                transition={{ delay: 0.15 + i * 0.4, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                 className="relative flex flex-col items-start pl-16 lg:items-center lg:pl-0 lg:text-center"
               >
-                <span className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-full border border-flare bg-navy-950 text-sm font-semibold text-white lg:relative lg:mx-auto">
+                <span className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-full border border-accent-500 bg-navy-950 text-sm font-semibold text-white lg:relative lg:mx-auto">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <h3 className="text-lg font-semibold text-white lg:mt-6">{s.stage}</h3>
                 <p className="mt-2 text-[0.95rem] leading-relaxed text-silver-300 lg:mb-4">{s.text}</p>
                 <Link
                   href={s.href}
-                  className="mt-4 inline-block rounded-full lg:mt-auto border border-white/15 px-3 py-1 text-xs font-semibold uppercase tracking-[0.08em] text-silver-200 transition-colors hover:border-flare hover:text-white"
+                  className="mt-4 inline-block rounded-full lg:mt-auto border border-white/15 px-3 py-1 text-xs font-semibold uppercase tracking-[0.08em] text-silver-200 transition-colors hover:border-accent-500 hover:text-white"
                 >
                   {s.stop}
                 </Link>
-              </m.li>
+              </li>
             ))}
           </ol>
         </div>

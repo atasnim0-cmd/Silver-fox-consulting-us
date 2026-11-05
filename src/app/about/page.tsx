@@ -76,7 +76,7 @@ export default function AboutPage() {
       <section className="py-20 lg:py-28">
         <div className="container-page grid gap-10 lg:grid-cols-2 lg:gap-20">
           <SectionHeader eyebrow="What we believe" title="Security is a connected problem." />
-          <div className="reveal space-y-5 text-lg leading-relaxed lg:pt-10">
+          <div className="space-y-5 text-lg leading-relaxed lg:pt-10">
             <p>
               Attackers do not see separate departments for cloud, identity, applications, networks and data. They see
               opportunities, and they move between them.
@@ -91,8 +91,8 @@ export default function AboutPage() {
         </div>
         <div className="container-page mt-16 grid gap-5 lg:grid-cols-3">
           {strengths.map(({ icon: Icon, title, body }) => (
-            <div key={title} className="reveal rounded-lg border border-line p-8">
-              <Icon aria-hidden="true" className="h-6 w-6 text-flare-700" strokeWidth={1.75} />
+            <div key={title} className="rounded-lg border border-line p-8">
+              <Icon aria-hidden="true" className="h-6 w-6 text-accent-700" strokeWidth={1.75} />
               <h3 className="mt-5 text-xl font-semibold">{title}</h3>
               <p className="mt-3 leading-relaxed">{body}</p>
             </div>
@@ -105,7 +105,7 @@ export default function AboutPage() {
           <SectionHeader tone="dark" eyebrow="How we think" title="Five principles behind every engagement." />
           <dl className="mt-14 grid gap-px overflow-hidden rounded-lg bg-white/10 sm:grid-cols-2 lg:grid-cols-5">
             {principles.map((p) => (
-              <div key={p.title} className="reveal bg-navy-950 p-7">
+              <div key={p.title} className="bg-navy-950 p-7">
                 <dt className="font-serif text-xl text-white">{p.title}</dt>
                 <dd className="mt-3 leading-relaxed text-silver-300">{p.body}</dd>
               </div>
@@ -116,7 +116,7 @@ export default function AboutPage() {
 
       <section className="py-20 lg:py-28">
         <div className="container-page grid items-center gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-20">
-          <div className="reveal relative aspect-[4/3] overflow-hidden rounded-lg">
+          <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
             <Image
               src={photos.dallasSkylineDusk.src}
               alt={photos.dallasSkylineDusk.alt}
@@ -128,7 +128,7 @@ export default function AboutPage() {
           </div>
           <div>
             <SectionHeader eyebrow="Why Texas" title="Close to the industries we protect." />
-            <div className="reveal mt-6 space-y-5 text-lg leading-relaxed">
+            <div className="mt-6 space-y-5 text-lg leading-relaxed">
               <p>
                 Texas runs much of the country&apos;s energy production, a large share of its defense manufacturing,
                 some of its largest hospital systems and one of its fastest-growing technology sectors. Those industries
@@ -163,7 +163,7 @@ export default function AboutPage() {
             title="Every engagement is led by a practitioner."
             intro="The people who scope your engagement are the people who do the work. Our team holds industry certifications including OSCP, CISSP and CREST, and we keep those skills current through research, training and our own platforms."
           />
-          <div className="reveal flex flex-col justify-end gap-4 lg:pt-10">
+          <div className="flex flex-col justify-end gap-4 lg:pt-10">
             <ArrowLink href="/services">Explore our services</ArrowLink>
             <ArrowLink href="/platforms">See our platforms</ArrowLink>
             <ArrowLink href="/engineering">Engineering and applied R&amp;D</ArrowLink>
@@ -172,6 +172,7 @@ export default function AboutPage() {
       </section>
 
       <CtaBand
+        tone="light"
         title="Let's talk about where you stand."
         body="If you want an honest view of your security and a practical plan to improve it, we would like to hear from you."
         action={{ label: "Talk to Silver Fox", href: "/contact" }}

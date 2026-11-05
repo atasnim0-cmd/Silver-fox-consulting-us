@@ -4,11 +4,21 @@ Marketing website for **Silver Fox LLC**, the U.S. (Texas) cybersecurity busines
 
 - **Framework:** Next.js 16 (App Router, Cache Components), React 19, TypeScript
 - **Styling:** Tailwind CSS 4, with design tokens in `src/app/globals.css`
-- **Motion:** CSS scroll-driven animations, plus `motion` for the menus and the attack path diagram
+- **Motion:** `motion` for menus, tabs and counters; adapted [Motion Primitives](https://github.com/ibelick/motion-primitives) components (MIT, credited in each file under `src/components/motion-primitives/`); [anime.js](https://animejs.com) v4 for the home page network diagram, loaded lazily
 - **Forms:** server action, Zod validation, Cloudflare Turnstile and Resend email
 - **Hosting:** Vercel, with DNS on Cloudflare (DNS only) and the domain registered at Spaceship
 
 Every page is statically generated. The root layout sets `ensureStatic = "navigation"`, so the build fails if a change ever makes a page render per request.
+
+## Design and motion rules
+
+The design follows Vercel's Web Interface Guidelines and the taste-skill guidance for company sites:
+
+- Colors are navy, white and one blue accent family (`accent-*` in `globals.css`). No orange anywhere. The logo mark is dark blue (`accent-800`) on light backgrounds and white on dark ones.
+- Content is never hidden waiting for JavaScript or scroll position. The hero headline animates with CSS from first paint.
+- Motion is limited to hover and press feedback, the hero diagram (with a pause button, and paused when off screen), counters, the tab and category indicators, and the reading-progress bar. Everything respects `prefers-reduced-motion`.
+- Only `transform`, `opacity`, `box-shadow` and `border-color` are transitioned, never `transition: all`.
+- Inputs use 16px text so iOS does not zoom, and tap targets are at least 44px on phones.
 
 ## Getting started
 

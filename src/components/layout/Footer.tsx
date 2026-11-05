@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { Logo } from "@/components/brand/Logo";
+import { CATEGORIES, frameworks } from "@/content/compliance";
 import { companyLinks, getNavigation, legalLinks } from "@/content/navigation";
 import { fullAddress, site } from "@/content/site";
 
@@ -8,7 +9,16 @@ export function Footer() {
   const nav = getNavigation();
   const columns = [
     { title: "Services", links: nav.find((g) => g.id === "services")!.links },
-    { title: "Compliance", links: nav.find((g) => g.id === "compliance")!.links },
+    {
+      title: "Compliance",
+      links: [
+        ...CATEGORIES.map((c) => ({ label: c.label, href: `/compliance#${c.id}` })),
+        ...["cmmc", "soc-2", "iso-27001", "hipaa"].map((slug) => {
+          const f = frameworks.find((x) => x.slug === slug)!;
+          return { label: f.short, href: `/compliance/${f.slug}` };
+        }),
+      ],
+    },
     { title: "Industries", links: nav.find((g) => g.id === "industries")!.links },
     {
       title: "Company",
@@ -31,19 +41,19 @@ export function Footer() {
           </p>
           <ul className="mt-8 space-y-3 text-[0.95rem]">
             <li className="flex gap-3">
-              <Phone aria-hidden="true" className="mt-1 h-4 w-4 shrink-0 text-flare" />
+              <Phone aria-hidden="true" className="mt-1 h-4 w-4 shrink-0 text-accent-500" />
               <a href={`tel:${site.phone.tel}`} className="text-white hover:underline">
                 {site.phone.display}
               </a>
             </li>
             <li className="flex gap-3">
-              <Mail aria-hidden="true" className="mt-1 h-4 w-4 shrink-0 text-flare" />
+              <Mail aria-hidden="true" className="mt-1 h-4 w-4 shrink-0 text-accent-500" />
               <a href={`mailto:${site.email}`} className="text-white hover:underline">
                 {site.email}
               </a>
             </li>
             <li className="flex gap-3">
-              <MapPin aria-hidden="true" className="mt-1 h-4 w-4 shrink-0 text-flare" />
+              <MapPin aria-hidden="true" className="mt-1 h-4 w-4 shrink-0 text-accent-500" />
               <span>{fullAddress()}</span>
             </li>
           </ul>

@@ -9,7 +9,7 @@ export function FaqList({ faqs, title = "Frequently asked questions" }: { faqs: 
   return (
     <section aria-labelledby="faq-heading" className="bg-mist py-20 lg:py-24">
       <div className="container-page grid gap-10 lg:grid-cols-[1fr_2fr] lg:gap-16">
-        <div className="reveal">
+        <div>
           <p className="eyebrow">FAQ</p>
           <h2 id="faq-heading" className="display mt-4 text-[2rem] sm:text-[2.5rem]">
             {title}
@@ -22,7 +22,7 @@ export function FaqList({ faqs, title = "Frequently asked questions" }: { faqs: 
                 {f.q}
                 <Plus
                   aria-hidden="true"
-                  className="mt-1 h-5 w-5 shrink-0 text-flare-700 transition-transform duration-300 group-open:rotate-45"
+                  className="mt-1 h-5 w-5 shrink-0 text-accent-700 transition-transform duration-300 group-open:rotate-45"
                 />
               </summary>
               <p className="max-w-3xl pb-6 leading-relaxed text-body">{f.a}</p>

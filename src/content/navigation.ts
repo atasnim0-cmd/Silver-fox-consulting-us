@@ -1,10 +1,13 @@
 import { services } from "./services";
-import { frameworks } from "./compliance";
+import { CATEGORIES, frameworks } from "./compliance";
 import { industries } from "./industries";
 import { platforms } from "./platforms";
 
-export type NavLink = { label: string; href: string; description?: string };
+/** `section` groups links into columns in the mega menu (used by Compliance). */
+export type NavLink = { label: string; href: string; description?: string; section?: string };
 export type NavGroup = { id: string; label: string; href: string; links: NavLink[] };
+
+const categoryShort = Object.fromEntries(CATEGORIES.map((c) => [c.id, c.short]));
 
 /**
  * Slim navigation model built on the server and passed to the client header,
@@ -22,7 +25,12 @@ export function getNavigation(): NavGroup[] {
       id: "compliance",
       label: "Compliance",
       href: "/compliance",
-      links: frameworks.map((f) => ({ label: f.short, href: `/compliance/${f.slug}`, description: f.appliesTo })),
+      links: frameworks.map((f) => ({
+        label: f.short,
+        href: `/compliance/${f.slug}`,
+        description: f.appliesTo,
+        section: categoryShort[f.category],
+      })),
     },
     {
       id: "industries",

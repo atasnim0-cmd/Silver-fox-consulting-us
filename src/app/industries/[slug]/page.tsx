@@ -7,6 +7,7 @@ import { PageHero } from "@/components/sections/PageHero";
 import { ChipLinks, RelatedServices } from "@/components/sections/Related";
 import { SectionHeader } from "@/components/sections/SectionHeader";
 import { ButtonLink } from "@/components/ui/ButtonLink";
+import { ScrollProgress } from "@/components/motion-primitives/scroll-progress";
 import { getIndustry, industries } from "@/content/industries";
 import { photos } from "@/content/photos";
 import { pageMetadata } from "@/lib/seo";
@@ -30,6 +31,7 @@ export default async function IndustryPage({ params }: PageProps<"/industries/[s
 
   return (
     <>
+      <ScrollProgress />
       <PageHero
         crumbs={[
           { name: "Industries", path: "/industries" },
@@ -57,8 +59,8 @@ export default async function IndustryPage({ params }: PageProps<"/industries/[s
           <SectionHeader eyebrow={ind.name} title={ind.pressures.title} />
           <ul className="mt-12 grid gap-5 md:grid-cols-2">
             {ind.pressures.items.map((p, i) => (
-              <li key={p.title} className="reveal rounded-lg border border-line p-7">
-                <span className="font-serif text-lg text-flare-700">{String(i + 1).padStart(2, "0")}</span>
+              <li key={p.title} className="rounded-lg border border-line p-7">
+                <span className="font-serif text-lg text-accent-700">{String(i + 1).padStart(2, "0")}</span>
                 <h3 className="mt-3 text-xl font-semibold">{p.title}</h3>
                 <p className="mt-2 leading-relaxed">{p.body}</p>
               </li>
@@ -71,14 +73,14 @@ export default async function IndustryPage({ params }: PageProps<"/industries/[s
         <div className="container-page grid gap-12 lg:grid-cols-[1fr_1.3fr] lg:gap-20">
           <div>
             <SectionHeader tone="dark" eyebrow="Our work" title={ind.work.title} />
-            <div className="reveal mt-10">
+            <div className="mt-10">
               <ChipLinks kind="compliance" slugs={ind.frameworks} label="Relevant frameworks" tone="dark" />
             </div>
           </div>
-          <ul className="reveal grid gap-x-8 gap-y-4 sm:grid-cols-2 lg:pt-12">
+          <ul className="grid gap-x-8 gap-y-4 sm:grid-cols-2 lg:pt-12">
             {ind.work.items.map((w) => (
               <li key={w} className="flex gap-3 text-silver-100">
-                <Check aria-hidden="true" className="mt-1 h-4 w-4 shrink-0 text-flare" strokeWidth={2.5} />
+                <Check aria-hidden="true" className="mt-1 h-4 w-4 shrink-0 text-accent-500" strokeWidth={2.5} />
                 <span className="leading-snug">{w}</span>
               </li>
             ))}
@@ -94,6 +96,7 @@ export default async function IndustryPage({ params }: PageProps<"/industries/[s
 
       <FaqList faqs={ind.faqs} />
       <CtaBand
+        tone="light"
         title={`Talk to someone who knows ${ind.name.toLowerCase()}.`}
         body="Tell us about your environment and your obligations. We will suggest a practical first step."
         action={{ label: "Talk to a specialist", href: `/contact?topic=${ind.slug}` }}

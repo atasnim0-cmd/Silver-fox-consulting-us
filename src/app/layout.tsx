@@ -4,7 +4,6 @@ import { Public_Sans, Source_Serif_4 } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { UtilityBar } from "@/components/layout/UtilityBar";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getNavigation } from "@/content/navigation";
 import { site } from "@/content/site";
@@ -26,7 +25,6 @@ const sourceSerif = Source_Serif_4({
   subsets: ["latin"],
   variable: "--font-source-serif",
   display: "swap",
-  axes: ["opsz"],
 });
 
 export const metadata: Metadata = {
@@ -47,20 +45,19 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0a1528",
+  themeColor: "#ffffff",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en-US" className={`${publicSans.variable} ${sourceSerif.variable} antialiased`}>
-      <body className="flex min-h-dvh flex-col">
+      <body className="flex min-h-dvh flex-col pb-[calc(4.5rem+env(safe-area-inset-bottom,0px))] lg:pb-0">
         <a
           href="#main"
           className="sr-only z-[100] rounded-md bg-navy-900 px-4 py-3 font-semibold text-white focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
         >
           Skip to main content
         </a>
-        <UtilityBar />
         <Header groups={getNavigation()} incident={site.incidentLine} />
         <main id="main" className="flex-1">
           {children}

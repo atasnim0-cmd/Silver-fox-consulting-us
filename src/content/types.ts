@@ -44,9 +44,12 @@ export type Service = {
   cta: { title: string; body: string; action: Link };
 };
 
+export type FrameworkCategory = "iso" | "nist" | "soc" | "us";
+
 export type Framework = {
   slug: string;
   name: string;
+  category: FrameworkCategory;
   /** Short label for chips and menus, e.g. "SOC 2". */
   short: string;
   blurb: string;
@@ -86,7 +89,7 @@ export type Platform = {
   question: string;
   tagline: string;
   blurb: string;
-  accent: "flare" | "sky" | "amber";
+  accent: "blue" | "teal" | "slate";
   metaTitle: string;
   metaDescription: string;
   hero: { title: string; intro: string[] };

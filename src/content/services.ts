@@ -182,7 +182,7 @@ export const services: Service[] = [
       "Policies and procedures, where they are in scope",
       "Readout session with your leadership team",
     ],
-    frameworks: ["cmmc", "nist-csf", "soc-2", "hipaa", "iso-27001", "tx-ramp"],
+    frameworks: ["cmmc", "nist-csf", "nist-800-53", "soc-2", "iso-27001", "iso-9001", "hipaa", "tx-ramp"],
     platforms: ["scope", "range"],
     industries: ["defense-contractors", "financial-services", "healthcare", "state-local-government"],
     faqs: [
@@ -436,7 +436,7 @@ export const services: Service[] = [
       "Detection notes showing what your tools saw and what they missed",
       "Retest results confirming which findings are closed",
     ],
-    frameworks: ["pci-dss", "soc-2", "cmmc", "hipaa", "iso-27001"],
+    frameworks: ["pci-dss", "soc-2", "cmmc", "hipaa", "iso-27001", "nist-800-218"],
     platforms: ["scope", "range"],
     industries: ["technology-saas", "financial-services", "healthcare", "defense-contractors", "energy-utilities"],
     faqs: [
@@ -680,7 +680,7 @@ export const services: Service[] = [
       "Logging and detection recommendations",
       "Validation test results",
     ],
-    frameworks: ["cmmc", "soc-2", "pci-dss", "iso-27001", "tx-ramp"],
+    frameworks: ["iso-27017", "nist-800-218", "cmmc", "soc-2", "pci-dss", "iso-27001", "iec-62443"],
     platforms: ["scope", "signal"],
     industries: ["technology-saas", "financial-services", "healthcare", "state-local-government"],
     faqs: [
@@ -902,7 +902,7 @@ export const services: Service[] = [
       "Data inventory and classification scheme",
       "Prioritized remediation plan",
     ],
-    frameworks: ["cmmc", "hipaa", "soc-2", "pci-dss", "nist-csf"],
+    frameworks: ["nist-800-171", "cmmc", "hipaa", "soc-2", "pci-dss", "nist-800-53"],
     platforms: ["scope", "signal"],
     industries: ["financial-services", "healthcare", "defense-contractors", "technology-saas"],
     faqs: [
@@ -1126,7 +1126,7 @@ export const services: Service[] = [
       "Quarterly service review with leadership",
       "Post-incident summaries for confirmed threats",
     ],
-    frameworks: ["cmmc", "hipaa", "pci-dss", "soc-2", "nist-csf"],
+    frameworks: ["nist-csf", "nist-800-61", "cmmc", "hipaa", "pci-dss", "soc-2"],
     platforms: ["signal", "scope", "range"],
     industries: ["healthcare", "financial-services", "energy-utilities", "state-local-government"],
     faqs: [
@@ -1346,7 +1346,7 @@ export const services: Service[] = [
       "Recovery and hardening recommendations",
       "Executive summary suitable for leadership, counsel and insurers",
     ],
-    frameworks: ["hipaa", "cmmc", "pci-dss", "nist-csf"],
+    frameworks: ["nist-800-61", "hipaa", "cmmc", "pci-dss", "nist-csf"],
     platforms: ["signal", "range", "scope"],
     industries: [
       "healthcare",

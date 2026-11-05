@@ -37,29 +37,29 @@ export default function ContactPage() {
               <h2 className="text-xs font-semibold uppercase tracking-[0.14em] text-muted">Reach us directly</h2>
               <ul className="mt-5 space-y-4 text-lg">
                 <li className="flex gap-3">
-                  <Phone aria-hidden="true" className="mt-1.5 h-5 w-5 shrink-0 text-flare-700" />
+                  <Phone aria-hidden="true" className="mt-1.5 h-5 w-5 shrink-0 text-accent-700" />
                   <a href={`tel:${site.phone.tel}`} className="font-semibold text-ink hover:underline">
                     {site.phone.display}
                   </a>
                 </li>
                 <li className="flex gap-3">
-                  <Mail aria-hidden="true" className="mt-1.5 h-5 w-5 shrink-0 text-flare-700" />
+                  <Mail aria-hidden="true" className="mt-1.5 h-5 w-5 shrink-0 text-accent-700" />
                   <a href={`mailto:${site.email}`} className="font-semibold text-ink hover:underline">
                     {site.email}
                   </a>
                 </li>
                 <li className="flex gap-3">
-                  <MapPin aria-hidden="true" className="mt-1.5 h-5 w-5 shrink-0 text-flare-700" />
+                  <MapPin aria-hidden="true" className="mt-1.5 h-5 w-5 shrink-0 text-accent-700" />
                   <span>{fullAddress()}</span>
                 </li>
                 <li className="flex gap-3">
-                  <Clock aria-hidden="true" className="mt-1.5 h-5 w-5 shrink-0 text-flare-700" />
+                  <Clock aria-hidden="true" className="mt-1.5 h-5 w-5 shrink-0 text-accent-700" />
                   <span>{site.hours}</span>
                 </li>
               </ul>
             </div>
 
-            <div className="rounded-lg border-l-4 border-flare bg-navy-950 p-7 text-silver-300">
+            <div className="rounded-lg border-l-4 border-accent-500 bg-navy-950 p-7 text-silver-300">
               <h2 className="font-serif text-2xl text-white">Dealing with an active incident?</h2>
               <p className="mt-3 leading-relaxed">
                 Please don&apos;t use the form. Call our incident line, available {incidentAvailability()}.
@@ -68,7 +68,7 @@ export default function ContactPage() {
                 href={`tel:${site.incidentLine.tel}`}
                 className="mt-5 inline-flex items-center gap-2 text-2xl font-semibold text-white hover:underline"
               >
-                <Phone aria-hidden="true" className="h-5 w-5 text-flare" />
+                <Phone aria-hidden="true" className="h-5 w-5 text-accent-500" />
                 {site.incidentLine.display}
               </a>
             </div>
@@ -78,7 +78,7 @@ export default function ContactPage() {
               <ol className="mt-5 space-y-4">
                 {nextSteps.map((s, i) => (
                   <li key={s} className="flex gap-4">
-                    <span className="font-serif text-lg text-flare-700">{String(i + 1).padStart(2, "0")}</span>
+                    <span className="font-serif text-lg text-accent-700">{String(i + 1).padStart(2, "0")}</span>
                     <span className="leading-relaxed">{s}</span>
                   </li>
                 ))}

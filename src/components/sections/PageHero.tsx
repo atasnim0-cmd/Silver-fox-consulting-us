@@ -24,15 +24,7 @@ export function PageHero({ crumbs, eyebrow, title, intro = [], actions, photo, v
     <section className="relative isolate overflow-hidden bg-navy-950 text-silver-200">
       {isBackground && (
         <>
-          <Image
-            src={photo.src}
-            alt=""
-            fill
-            priority
-            sizes="100vw"
-            placeholder="blur"
-            className="hero-zoom -z-20 object-cover"
-          />
+          <Image src={photo.src} alt="" fill priority sizes="100vw" placeholder="blur" className="-z-20 object-cover" />
           <div className="absolute inset-0 -z-10 bg-gradient-to-r from-navy-950 via-navy-950/85 to-navy-950/40" />
         </>
       )}
@@ -64,7 +56,7 @@ export function PageHero({ crumbs, eyebrow, title, intro = [], actions, photo, v
           {isSplit && (
             <div className="relative hidden lg:block">
               <div
-                className="absolute -left-4 -top-4 h-24 w-24 border-l-2 border-t-2 border-flare"
+                className="absolute -left-4 -top-4 h-24 w-24 border-l-2 border-t-2 border-accent-500"
                 aria-hidden="true"
               />
               <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
@@ -75,7 +67,7 @@ export function PageHero({ crumbs, eyebrow, title, intro = [], actions, photo, v
                   priority
                   sizes="(min-width: 1024px) 40vw, 100vw"
                   placeholder="blur"
-                  className="hero-zoom object-cover"
+                  className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-navy-950/40 to-transparent" />
               </div>

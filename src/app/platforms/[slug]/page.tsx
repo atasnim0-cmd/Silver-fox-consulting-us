@@ -4,16 +4,17 @@ import { ChevronRight, HelpCircle } from "lucide-react";
 import { CapabilityBlock } from "@/components/sections/CapabilityBlock";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { FaqList } from "@/components/sections/FaqList";
-import { OnThisPage } from "@/components/sections/OnThisPage";
+import { CapabilityTabs } from "@/components/sections/CapabilityTabs";
 import { PageHero } from "@/components/sections/PageHero";
 import { RelatedServices } from "@/components/sections/Related";
 import { SectionHeader } from "@/components/sections/SectionHeader";
 import { ButtonLink } from "@/components/ui/ButtonLink";
+import { ScrollProgress } from "@/components/motion-primitives/scroll-progress";
 import { getPlatform, platforms } from "@/content/platforms";
 import { pageMetadata } from "@/lib/seo";
 
-const accentBg = { flare: "bg-flare", sky: "bg-sky", amber: "bg-amber" } as const;
-const accentText = { flare: "text-flare", sky: "text-sky", amber: "text-amber" } as const;
+const accentBg = { blue: "bg-accent-500", teal: "bg-teal", slate: "bg-silver-300" } as const;
+const accentText = { blue: "text-accent-400", teal: "text-teal", slate: "text-silver-200" } as const;
 
 export function generateStaticParams() {
   return platforms.map((p) => ({ slug: p.slug }));
@@ -34,6 +35,7 @@ export default async function PlatformPage({ params }: PageProps<"/platforms/[sl
 
   return (
     <>
+      <ScrollProgress />
       <PageHero
         crumbs={[
           { name: "Platforms", path: "/platforms" },
@@ -68,8 +70,8 @@ export default async function PlatformPage({ params }: PageProps<"/platforms/[sl
           <SectionHeader eyebrow="The questions" title={`What ${p.name} helps you answer`} />
           <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {p.questions.map((q) => (
-              <li key={q} className="reveal flex gap-3 rounded-lg bg-mist p-6 text-lg leading-snug text-ink">
-                <HelpCircle aria-hidden="true" className="mt-1 h-5 w-5 shrink-0 text-flare-700" strokeWidth={1.75} />
+              <li key={q} className="flex gap-3 rounded-lg bg-mist p-6 text-lg leading-snug text-ink">
+                <HelpCircle aria-hidden="true" className="mt-1 h-5 w-5 shrink-0 text-accent-700" strokeWidth={1.75} />
                 {q}
               </li>
             ))}
@@ -77,15 +79,17 @@ export default async function PlatformPage({ params }: PageProps<"/platforms/[sl
         </div>
       </section>
 
-      <section className="pb-20 lg:pb-24">
-        <div className="container-page grid gap-12 lg:grid-cols-[15rem_1fr] lg:gap-16">
-          <aside className="hidden lg:block">
-            <OnThisPage items={p.capabilities.map((c) => ({ id: c.id, title: c.title }))} />
-          </aside>
-          <div className="space-y-14">
-            {p.capabilities.map((c, i) => (
-              <CapabilityBlock key={c.id} cap={c} index={i} />
-            ))}
+      <section aria-labelledby="capabilities-heading" className="bg-mist py-20 lg:py-24">
+        <div className="container-page">
+          <h2 id="capabilities-heading" className="display text-[2rem] sm:text-[2.5rem]">
+            What {p.name} does
+          </h2>
+          <div className="mt-10">
+            <CapabilityTabs items={p.capabilities.map((c) => ({ id: c.id, title: c.title, summary: c.summary }))}>
+              {p.capabilities.map((c) => (
+                <CapabilityBlock key={c.id} cap={c} variant="panel" />
+              ))}
+            </CapabilityTabs>
           </div>
         </div>
       </section>
@@ -93,7 +97,7 @@ export default async function PlatformPage({ params }: PageProps<"/platforms/[sl
       <section className="bg-navy-950 py-20">
         <div className="container-page">
           <SectionHeader tone="dark" eyebrow={p.name} title="How it fits together" />
-          <ol className="reveal mt-10 flex flex-wrap items-center gap-3">
+          <ol className="mt-10 flex flex-wrap items-center gap-3">
             {p.flow.map((step, i) => (
               <li key={step} className="flex items-center gap-3">
                 <span className="rounded-md border border-white/15 bg-navy-900 px-5 py-3 font-semibold text-white">
@@ -112,7 +116,7 @@ export default async function PlatformPage({ params }: PageProps<"/platforms/[sl
           <SectionHeader eyebrow="Use cases" title={`Where teams use ${p.name}`} />
           <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {p.useCases.map((u) => (
-              <li key={u.title} className="reveal rounded-lg border border-line bg-white p-7">
+              <li key={u.title} className="rounded-lg border border-line bg-white p-7">
                 <h3 className="text-lg font-semibold">{u.title}</h3>
                 <p className="mt-2 leading-relaxed">{u.body}</p>
               </li>

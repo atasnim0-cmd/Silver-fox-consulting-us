@@ -1,4 +1,5 @@
-import type { Framework } from "./types";
+import { extraFrameworks } from "./compliance-extra";
+import type { Framework, FrameworkCategory } from "./types";
 
 /*
  * Fact check notes (verify again before launch and once a year after):
@@ -13,10 +14,11 @@ import type { Framework } from "./types";
  * - Texas breach notification: Bus. & Com. Code 521.053.
  */
 
-export const frameworks: Framework[] = [
+const coreFrameworks: Framework[] = [
   {
     slug: "cmmc",
-    name: "CMMC 2.0 & NIST SP 800-171",
+    category: "us",
+    name: "CMMC 2.0",
     short: "CMMC 2.0",
     blurb:
       "Readiness for defense contractors that handle Federal Contract Information or Controlled Unclassified Information.",
@@ -153,6 +155,7 @@ export const frameworks: Framework[] = [
 
   {
     slug: "soc-2",
+    category: "soc",
     name: "SOC 2",
     short: "SOC 2",
     blurb: "Readiness for SaaS and service companies whose customers ask for a SOC 2 report.",
@@ -270,6 +273,7 @@ export const frameworks: Framework[] = [
 
   {
     slug: "hipaa",
+    category: "us",
     name: "HIPAA Security",
     short: "HIPAA",
     blurb:
@@ -388,6 +392,7 @@ export const frameworks: Framework[] = [
 
   {
     slug: "pci-dss",
+    category: "us",
     name: "PCI DSS 4.0.1",
     short: "PCI DSS",
     blurb: "Scope reduction, gap assessments and required testing for organizations that handle payment card data.",
@@ -505,6 +510,7 @@ export const frameworks: Framework[] = [
 
   {
     slug: "tx-ramp",
+    category: "us",
     name: "TX-RAMP",
     short: "TX-RAMP",
     blurb: "Preparation for cloud vendors that want to sell to Texas state agencies.",
@@ -613,6 +619,7 @@ export const frameworks: Framework[] = [
 
   {
     slug: "iso-27001",
+    category: "iso",
     name: "ISO/IEC 27001:2022",
     short: "ISO 27001",
     blurb: "Build an information security management system that passes certification and keeps working afterward.",
@@ -724,6 +731,7 @@ export const frameworks: Framework[] = [
 
   {
     slug: "nist-csf",
+    category: "nist",
     name: "NIST Cybersecurity Framework 2.0",
     short: "NIST CSF 2.0",
     blurb: "A practical way to measure and improve your security program in any industry.",
@@ -815,6 +823,68 @@ export const frameworks: Framework[] = [
     ],
   },
 ];
+
+/** Display order: grouped by category, most requested first within each group. */
+const ORDER = [
+  "iso-27001",
+  "iso-27017",
+  "iso-9001",
+  "iso-17021",
+  "iec-62443",
+  "nist-csf",
+  "nist-800-53",
+  "nist-800-171",
+  "nist-800-61",
+  "nist-800-218",
+  "soc-1",
+  "soc-2",
+  "soc-3",
+  "cmmc",
+  "hipaa",
+  "pci-dss",
+  "tx-ramp",
+];
+
+const all = [...coreFrameworks, ...extraFrameworks];
+
+export const frameworks: Framework[] = ORDER.map((slug) => {
+  const f = all.find((x) => x.slug === slug);
+  if (!f) throw new Error(`Unknown framework in ORDER: ${slug}`);
+  return f;
+});
+
+if (frameworks.length !== all.length) throw new Error("Every framework must appear in ORDER exactly once.");
+
+export const CATEGORIES: { id: FrameworkCategory; label: string; short: string; intro: string }[] = [
+  {
+    id: "iso",
+    label: "ISO and IEC standards",
+    short: "ISO & IEC",
+    intro: "International management system, cloud and industrial standards, certified by accredited bodies.",
+  },
+  {
+    id: "nist",
+    label: "NIST frameworks",
+    short: "NIST",
+    intro: "US government frameworks and special publications used by agencies, contractors and the private sector.",
+  },
+  {
+    id: "soc",
+    label: "SOC reports",
+    short: "SOC",
+    intro: "AICPA attestation reports issued by licensed CPA firms for service organizations.",
+  },
+  {
+    id: "us",
+    label: "US regulations and programs",
+    short: "US & industry",
+    intro: "Federal, state and industry requirements tied to contracts, data types and payments.",
+  },
+];
+
+export function frameworksIn(category: FrameworkCategory): Framework[] {
+  return frameworks.filter((f) => f.category === category);
+}
 
 export function getFramework(slug: string): Framework | undefined {
   return frameworks.find((f) => f.slug === slug);

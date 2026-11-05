@@ -50,7 +50,7 @@ export const industries: Industry[] = [
         "Supplier risk reviews for primes managing their own supply chain",
       ],
     },
-    frameworks: ["cmmc", "nist-csf"],
+    frameworks: ["cmmc", "nist-800-171", "nist-800-53", "nist-csf"],
     services: ["strategy-risk-compliance", "identity-data-security", "penetration-testing", "incident-response"],
     faqs: [
       {
@@ -110,7 +110,7 @@ export const industries: Industry[] = [
         "Cyber range exercises built on RANGE",
       ],
     },
-    frameworks: ["nist-csf"],
+    frameworks: ["iec-62443", "nist-csf"],
     services: [
       "cloud-application-infrastructure",
       "penetration-testing",
@@ -235,7 +235,7 @@ export const industries: Industry[] = [
         "PCI DSS and SOC 2 readiness",
       ],
     },
-    frameworks: ["pci-dss", "soc-2", "nist-csf"],
+    frameworks: ["pci-dss", "soc-1", "soc-2", "nist-csf"],
     services: [
       "penetration-testing",
       "identity-data-security",
@@ -299,7 +299,7 @@ export const industries: Industry[] = [
         "Fractional CISO support for growing companies",
       ],
     },
-    frameworks: ["soc-2", "iso-27001", "tx-ramp"],
+    frameworks: ["soc-2", "soc-3", "iso-27001", "iso-27017", "nist-800-218", "tx-ramp"],
     services: [
       "penetration-testing",
       "cloud-application-infrastructure",
@@ -363,7 +363,7 @@ export const industries: Industry[] = [
         "TX-RAMP guidance for agencies and their vendors",
       ],
     },
-    frameworks: ["nist-csf", "tx-ramp"],
+    frameworks: ["nist-csf", "nist-800-53", "tx-ramp"],
     services: ["strategy-risk-compliance", "incident-response", "managed-detection-response", "penetration-testing"],
     faqs: [
       {

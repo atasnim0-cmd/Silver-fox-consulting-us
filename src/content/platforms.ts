@@ -15,7 +15,7 @@ export const platforms: Platform[] = [
     question: "Where are we exposed?",
     tagline: "See your organization the way an attacker does.",
     blurb: "Continuous discovery and monitoring of your internet-facing assets, exposures and attack paths.",
-    accent: "flare",
+    accent: "blue",
     metaTitle: "SCOPE External Attack Surface Management",
     metaDescription:
       "SCOPE discovers internet-facing assets, finds exploitable exposures and leaked credentials, and prioritizes what to fix first.",
@@ -157,7 +157,7 @@ export const platforms: Platform[] = [
     tagline: "Turn security data into decisions.",
     blurb:
       "Brings endpoint, identity, network, cloud and threat intelligence data together so analysts can investigate faster.",
-    accent: "sky",
+    accent: "teal",
     metaTitle: "SIGNAL Security Operations Platform",
     metaDescription:
       "SIGNAL correlates endpoint, identity, network and cloud telemetry with threat intelligence so analysts can investigate and respond faster.",
@@ -298,7 +298,7 @@ export const platforms: Platform[] = [
     tagline: "Test your defenses before a real attacker does.",
     blurb:
       "Controlled environments for attack simulation, SOC training, purple teaming and incident response exercises.",
-    accent: "amber",
+    accent: "slate",
     metaTitle: "RANGE Cyber Range & Digital Twin",
     metaDescription:
       "RANGE provides controlled cyber range environments for attack simulation, SOC training, purple teaming and incident response exercises.",

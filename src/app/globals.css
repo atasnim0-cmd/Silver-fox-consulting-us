@@ -2,10 +2,10 @@
 
 /*
  * Silver Fox US design tokens.
- * Navy and white carry the layout. Flare orange is the brand accent from the
- * logo and is used sparingly: marks, rules, focus rings and small highlights.
- * Contrast notes: body (#3c4859) on white is about 9:1. Flare on white is about
- * 3:1, so it is never used for small text on light backgrounds; flare-700 is.
+ * Navy and white carry the layout. A single blue family is the accent; the logo
+ * mark uses accent-800 on light grounds and white on dark grounds. No orange.
+ * Contrast (WCAG 2): body #3c4859 on white 9:1; accent-700 on white 8:1;
+ * accent-500 on white 4.6:1 (icons, large text); accent-400 on navy 6.8:1.
  */
 @theme {
   --font-sans: var(--font-public-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
@@ -28,21 +28,29 @@
   --color-body: #3c4859;
   --color-muted: #5d697b;
 
-  --color-flare: #ff5a36;
-  --color-flare-600: #ef4a25;
-  --color-flare-700: #c13819;
-  --color-sky: #6d9cff;
-  --color-amber: #f0b941;
+  --color-accent-900: #13275c;
+  --color-accent-800: #1b3a85;
+  --color-accent-700: #2149a8;
+  --color-accent-600: #2b5bd0;
+  --color-accent-500: #3d6fe6;
+  --color-accent-400: #6f97f2;
+  --color-accent-300: #a6c0f8;
+  --color-accent-100: #e7eefd;
+  --color-accent-50: #f3f6fe;
+  --color-teal: #2fb5a4;
+
+  /* Layered shadows: a tight contact shadow plus a soft ambient one, tinted toward navy. */
+  --shadow-card: 0 1px 2px rgba(10, 21, 40, 0.06), 0 8px 24px -12px rgba(10, 21, 40, 0.18);
+  --shadow-lift: 0 1px 2px rgba(10, 21, 40, 0.08), 0 18px 40px -18px rgba(10, 21, 40, 0.32);
 
   --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
-
-  --animate-rise: rise 0.9s var(--ease-out-soft) both;
+  --animate-rise: rise 0.8s var(--ease-out-soft) both;
 }
 
 @keyframes rise {
   from {
     opacity: 0;
-    transform: translateY(18px);
+    transform: translateY(14px);
   }
   to {
     opacity: 1;
@@ -54,6 +62,8 @@
   html {
     -webkit-text-size-adjust: 100%;
     scroll-padding-top: 6rem;
+    color-scheme: light;
+    -webkit-tap-highlight-color: rgba(61, 111, 230, 0.15);
   }
 
   body {
@@ -62,7 +72,7 @@
     font-family: var(--font-sans);
     font-size: 1.0625rem;
     line-height: 1.65;
-    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
   }
 
   h1,
@@ -73,19 +83,40 @@
     text-wrap: balance;
   }
 
+  h2[id],
+  h3[id],
+  section[id] {
+    scroll-margin-top: 6rem;
+  }
+
   p {
     text-wrap: pretty;
   }
 
+  a,
+  button,
+  summary,
+  input,
+  select,
+  textarea,
+  label {
+    touch-action: manipulation;
+  }
+
   ::selection {
-    background: color-mix(in srgb, var(--color-flare) 28%, transparent);
+    background: var(--color-accent-100);
     color: var(--color-ink);
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-flare);
+    outline: 2px solid var(--color-accent-500);
     outline-offset: 3px;
     border-radius: 2px;
+  }
+
+  /* Numbers that line up: steps, stats, phone numbers. */
+  .tabular {
+    font-variant-numeric: tabular-nums;
   }
 }
 
@@ -102,7 +133,7 @@
     }
   }
 
-  /* Small uppercase label with an orange tick, used above section headings. */
+  /* Small uppercase label with a blue tick. Used sparingly above key headings. */
   .eyebrow {
     display: inline-flex;
     align-items: center;
@@ -111,16 +142,19 @@
     font-weight: 600;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--color-flare-700);
+    color: var(--color-accent-700);
   }
   .eyebrow::before {
     content: "";
     width: 1.25rem;
     height: 2px;
-    background: var(--color-flare);
+    background: var(--color-accent-500);
   }
   .eyebrow-dark {
-    color: var(--color-silver-300);
+    color: var(--color-accent-300);
+  }
+  .eyebrow-dark::before {
+    background: var(--color-accent-400);
   }
 
   .display {
@@ -137,8 +171,45 @@
     background-repeat: no-repeat;
     transition: background-size 0.35s var(--ease-out-soft);
   }
-  .link-underline:hover {
+  .link-underline:hover,
+  .group:hover .link-underline {
     background-size: 100% 1px;
+  }
+
+  /*
+   * Hover and press feedback. A linked card lifts 2px; buttons press on click.
+   * Only transform, box-shadow and border-color transition (never "all").
+   */
+  .card-link {
+    transition:
+      transform 0.25s var(--ease-out-soft),
+      box-shadow 0.25s var(--ease-out-soft),
+      border-color 0.25s var(--ease-out-soft);
+  }
+  @media (hover: hover) {
+    .card-link:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lift);
+      border-color: color-mix(in srgb, var(--color-accent-500) 35%, var(--color-line));
+    }
+  }
+  .press {
+    transition:
+      transform 0.15s var(--ease-out-soft),
+      background-color 0.2s ease,
+      border-color 0.2s ease,
+      color 0.2s ease;
+  }
+  .press:active {
+    transform: scale(0.97);
+  }
+
+  /* Hide scrollbars on horizontal pill rows while keeping them scrollable. */
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
   }
 
   /* Long-form legal text. */
@@ -166,54 +237,46 @@
     margin-bottom: 0.35rem;
   }
   .prose-legal a {
-    color: var(--color-flare-700);
+    color: var(--color-accent-700);
     text-decoration: underline;
     text-underline-offset: 3px;
   }
 }
 
-/*
- * Scroll reveal.
- * Uses CSS scroll-driven animations where the browser supports them and
- * leaves content fully visible everywhere else. No JavaScript, so nothing is
- * ever hidden if a script fails to load.
- */
+@keyframes word-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+/* Page-load entrance for hero copy only. Content is never hidden on scroll. */
 @media (prefers-reduced-motion: no-preference) {
-  @supports (animation-timeline: view()) {
-    .reveal {
-      animation: rise linear both;
-      animation-timeline: view();
-      animation-range: entry 5% entry 40%;
-    }
+  .word-reveal {
+    display: inline-block;
+    animation: word-in 0.6s var(--ease-out-soft) both;
   }
 
   .hero-rise > * {
     animation: var(--animate-rise);
   }
   .hero-rise > *:nth-child(2) {
-    animation-delay: 0.08s;
+    animation-delay: 0.06s;
   }
   .hero-rise > *:nth-child(3) {
-    animation-delay: 0.16s;
+    animation-delay: 0.12s;
   }
   .hero-rise > *:nth-child(4) {
-    animation-delay: 0.24s;
+    animation-delay: 0.18s;
   }
   .hero-rise > *:nth-child(5) {
-    animation-delay: 0.32s;
-  }
-
-  .hero-zoom {
-    animation: hero-zoom 14s var(--ease-out-soft) both;
-  }
-}
-
-@keyframes hero-zoom {
-  from {
-    transform: scale(1.06);
-  }
-  to {
-    transform: scale(1);
+    animation-delay: 0.24s;
   }
 }
 

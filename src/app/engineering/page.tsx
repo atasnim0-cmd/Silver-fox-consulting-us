@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { CapabilityBlock } from "@/components/sections/CapabilityBlock";
 import { CtaBand } from "@/components/sections/CtaBand";
-import { OnThisPage } from "@/components/sections/OnThisPage";
+import { CapabilityTabs } from "@/components/sections/CapabilityTabs";
 import { PageHero } from "@/components/sections/PageHero";
 import { SectionHeader } from "@/components/sections/SectionHeader";
 import { StepList } from "@/components/sections/StepList";
@@ -207,15 +207,17 @@ export default function EngineeringPage() {
         }
       />
 
-      <section className="py-20 lg:py-28">
-        <div className="container-page grid gap-12 lg:grid-cols-[15rem_1fr] lg:gap-16">
-          <aside className="hidden lg:block">
-            <OnThisPage items={capabilities.map((c) => ({ id: c.id, title: c.title }))} />
-          </aside>
-          <div className="space-y-14">
-            {capabilities.map((c, i) => (
-              <CapabilityBlock key={c.id} cap={c} index={i} />
-            ))}
+      <section aria-labelledby="capabilities-heading" className="bg-mist py-20 lg:py-24">
+        <div className="container-page">
+          <h2 id="capabilities-heading" className="display text-[2rem] sm:text-[2.5rem]">
+            What we build
+          </h2>
+          <div className="mt-10">
+            <CapabilityTabs items={capabilities.map((c) => ({ id: c.id, title: c.title, summary: c.summary }))}>
+              {capabilities.map((c) => (
+                <CapabilityBlock key={c.id} cap={c} variant="panel" />
+              ))}
+            </CapabilityTabs>
           </div>
         </div>
       </section>

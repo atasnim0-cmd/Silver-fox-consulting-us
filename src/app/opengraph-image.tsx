@@ -21,7 +21,7 @@ export default function OpengraphImage() {
     >
       <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
         <svg width="64" height="64" viewBox="0 0 160 160">
-          <g transform="translate(32 22)" fill="#ff5a36">
+          <g transform="translate(32 22)" fill="#ffffff">
             <path d="M0 56 68 0 56 42 0 108Z" />
             <path d="M32 76 72 44 96 116Z" />
           </g>
@@ -39,7 +39,7 @@ export default function OpengraphImage() {
           Penetration testing, compliance readiness and incident response in Texas.
         </div>
       </div>
-      <div style={{ display: "flex", height: 6, width: 120, background: "#ff5a36" }} />
+      <div style={{ display: "flex", height: 6, width: 120, background: "#6f97f2" }} />
     </div>,
     size,
   );

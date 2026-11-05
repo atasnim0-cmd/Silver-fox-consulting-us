@@ -26,6 +26,9 @@ These statements are reasonable for a firm like this, but only the company can c
 | MDR service details (coverage, monthly reports, quarterly reviews) | `src/content/services.ts` |
 | Every SCOPE, SIGNAL and RANGE capability is available today | `src/content/platforms.ts` |
 | Engineering capabilities (computer vision, edge systems and so on) | `src/app/engineering/page.tsx` |
+| Silver Fox helps certification bodies with ISO/IEC 17021-1 accreditation readiness | `src/content/compliance-extra.ts` |
+| The services described on the 10 newer framework pages (ISO 9001, 27017, 17021-1, 62443; NIST 800-53, 800-171, 800-61, SSDF; SOC 1 and 3) are offered | `src/content/compliance-extra.ts` |
+| Home page stat "24/7 incident response line" (shown only while `roundTheClock` is true) | `src/app/page.tsx` |
 
 **Authorizations.** The compliance pages say plainly that Silver Fox prepares clients for assessments and that certifications are issued by third parties. If Silver Fox is (or becomes) a CMMC C3PAO, a PCI QSA company or a CPA firm, those pages can be updated. Until then, do not describe the company as certifying anyone.
 

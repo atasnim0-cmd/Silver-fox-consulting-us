@@ -12,14 +12,31 @@ export function LogoMark({ className = "h-8 w-8" }: { className?: string }) {
   );
 }
 
-/** Mark plus wordmark, linked to the home page. */
+/**
+ * Mark plus wordmark, linked to the home page.
+ * Dark blue on light grounds; white on dark grounds, where dark blue would disappear.
+ */
 export function Logo({ tone = "dark" }: { tone?: "dark" | "light" }) {
-  const text = tone === "light" ? "text-white" : "text-navy-900";
+  const light = tone === "light";
   return (
-    <Link href="/" className="group inline-flex items-center gap-2.5" aria-label="Silver Fox Consulting, home">
-      <LogoMark className="h-8 w-8 shrink-0 text-flare transition-transform duration-300 group-hover:scale-105" />
-      <span className={`text-[0.95rem] font-bold uppercase tracking-[0.08em] ${text}`}>
-        Silver Fox <span className="font-semibold text-steel-400">Consulting</span>
+    <Link
+      href="/"
+      translate="no"
+      className="group -m-1 inline-flex shrink-0 items-center gap-2.5 whitespace-nowrap rounded-md p-1"
+      aria-label="Silver Fox Consulting, home"
+    >
+      <LogoMark
+        className={`h-8 w-8 shrink-0 transition-transform duration-300 group-hover:scale-[1.04] ${
+          light ? "text-white" : "text-accent-800"
+        }`}
+      />
+      <span
+        className={`text-[0.95rem] font-bold uppercase tracking-[0.08em] ${light ? "text-white" : "text-navy-900"}`}
+      >
+        Silver Fox{" "}
+        <span className={`font-semibold lg:hidden xl:inline ${light ? "text-silver-300" : "text-steel-500"}`}>
+          Consulting
+        </span>
       </span>
     </Link>
   );

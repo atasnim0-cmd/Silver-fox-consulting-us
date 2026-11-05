@@ -2,12 +2,11 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import type { ReactNode } from "react";
 
-type Variant = "primary" | "light" | "outline" | "outline-light" | "flare";
+type Variant = "primary" | "light" | "outline" | "outline-light";
 
 const styles: Record<Variant, string> = {
-  primary: "bg-navy-900 text-white hover:bg-navy-700",
+  primary: "bg-navy-900 text-white hover:bg-accent-800",
   light: "bg-white text-navy-950 hover:bg-silver-100",
-  flare: "bg-flare text-navy-950 hover:bg-flare-600",
   outline: "border border-navy-900/25 text-navy-900 hover:border-navy-900 hover:bg-navy-900/[0.03]",
   "outline-light": "border border-white/35 text-white hover:border-white hover:bg-white/[0.06]",
 };
@@ -26,7 +25,7 @@ export function ButtonLink({
   className?: string;
 }) {
   const isExternal = /^(https?:|tel:|mailto:)/.test(href);
-  const classes = `group inline-flex items-center justify-center gap-2 rounded-md px-5 py-3 text-[0.95rem] font-semibold transition-colors duration-200 ${styles[variant]} ${className}`;
+  const classes = `press group inline-flex min-h-12 items-center justify-center gap-2 rounded-md px-5 text-[0.95rem] font-semibold ${styles[variant]} ${className}`;
   const content = (
     <>
       {children}
@@ -71,7 +70,7 @@ export function ArrowLink({
       <span className="link-underline">{children}</span>
       <ArrowRight
         aria-hidden="true"
-        className="h-4 w-4 text-flare transition-transform duration-200 group-hover:translate-x-0.5"
+        className="h-4 w-4 text-accent-500 transition-transform duration-200 group-hover:translate-x-0.5"
       />
     </Link>
   );

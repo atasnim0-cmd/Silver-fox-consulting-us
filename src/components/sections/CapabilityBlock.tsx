@@ -2,12 +2,25 @@ import { Check, Info } from "lucide-react";
 import type { Capability } from "@/content/types";
 
 /** One titled block of capabilities with an optional intro, grouped lists and a note. */
-export function CapabilityBlock({ cap, index }: { cap: Capability; index?: number }) {
+export function CapabilityBlock({
+  cap,
+  index,
+  variant = "section",
+}: {
+  cap: Capability;
+  index?: number;
+  /** "panel" drops the top rule for use inside CapabilityTabs. */
+  variant?: "section" | "panel";
+}) {
   return (
-    <section id={cap.id} aria-labelledby={`${cap.id}-title`} className="reveal scroll-mt-28 border-t border-line pt-10">
+    <section
+      id={cap.id}
+      aria-labelledby={`${cap.id}-title`}
+      className={variant === "panel" ? "scroll-mt-40" : "scroll-mt-28 border-t border-line pt-10"}
+    >
       <div className="flex items-baseline gap-4">
         {typeof index === "number" && (
-          <span className="font-serif text-lg text-flare-700">{String(index + 1).padStart(2, "0")}</span>
+          <span className="font-serif text-lg text-accent-700">{String(index + 1).padStart(2, "0")}</span>
         )}
         <div>
           <h2 id={`${cap.id}-title`} className="display text-[1.75rem] sm:text-[2rem]">
@@ -29,7 +42,7 @@ export function CapabilityBlock({ cap, index }: { cap: Capability; index?: numbe
           <ul className={`mt-3 grid gap-x-8 gap-y-2.5 ${g.items.length > 4 ? "sm:grid-cols-2" : ""}`}>
             {g.items.map((item) => (
               <li key={item} className="flex gap-3 text-[0.975rem] leading-snug text-ink">
-                <Check aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-flare-700" strokeWidth={2.5} />
+                <Check aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-accent-700" strokeWidth={2.5} />
                 <span>{item}</span>
               </li>
             ))}
@@ -38,8 +51,8 @@ export function CapabilityBlock({ cap, index }: { cap: Capability; index?: numbe
       ))}
 
       {cap.note && (
-        <p className="mt-7 flex max-w-3xl gap-3 rounded-md border-l-2 border-flare bg-mist px-4 py-3 text-[0.95rem] leading-relaxed">
-          <Info aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-flare-700" />
+        <p className="mt-7 flex max-w-3xl gap-3 rounded-md border-l-2 border-accent-500 bg-mist px-4 py-3 text-[0.95rem] leading-relaxed">
+          <Info aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-accent-700" />
           <span>{cap.note}</span>
         </p>
       )}

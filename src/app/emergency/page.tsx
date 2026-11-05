@@ -63,11 +63,11 @@ export default function EmergencyPage() {
           "Call our incident line now. The sooner we start, the more evidence survives and the more options you have.",
         ]}
         aside={
-          <div className="rounded-lg border border-flare/60 bg-navy-900 p-8">
+          <div className="rounded-lg border border-accent-500/60 bg-navy-900 p-8">
             <p className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.14em] text-silver-300">
               <span className="relative flex h-2.5 w-2.5" aria-hidden="true">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-flare opacity-60" />
-                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-flare" />
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-500 opacity-60" />
+                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-accent-500" />
               </span>
               Incident line
             </p>
@@ -75,7 +75,7 @@ export default function EmergencyPage() {
               href={`tel:${site.incidentLine.tel}`}
               className="mt-4 flex items-center gap-3 text-4xl font-semibold text-white hover:underline sm:text-5xl"
             >
-              <Phone aria-hidden="true" className="h-8 w-8 text-flare" />
+              <Phone aria-hidden="true" className="h-8 w-8 text-accent-500" />
               {site.incidentLine.display}
             </a>
             <p className="mt-4 text-silver-300">Available {incidentAvailability()}.</p>
@@ -92,8 +92,8 @@ export default function EmergencyPage() {
           />
           <ol className="space-y-4">
             {firstSteps.map((s, i) => (
-              <li key={s.title} className="reveal flex gap-5 rounded-lg border border-line p-6">
-                <span className="font-serif text-2xl text-flare-700">{String(i + 1).padStart(2, "0")}</span>
+              <li key={s.title} className="flex gap-5 rounded-lg border border-line p-6">
+                <span className="font-serif text-2xl text-accent-700">{String(i + 1).padStart(2, "0")}</span>
                 <div>
                   <h3 className="text-lg font-semibold leading-snug">{s.title}</h3>
                   <p className="mt-2 leading-relaxed">{s.body}</p>
@@ -108,16 +108,16 @@ export default function EmergencyPage() {
         <div className="container-page grid gap-12 lg:grid-cols-2 lg:gap-20">
           <div>
             <SectionHeader eyebrow="On the call" title="What we will ask you." />
-            <ul className="reveal mt-8 space-y-3">
+            <ul className="mt-8 space-y-3">
               {callChecklist.map((c) => (
                 <li key={c} className="flex gap-3 text-ink">
-                  <span aria-hidden="true" className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-flare" />
+                  <span aria-hidden="true" className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500" />
                   {c}
                 </li>
               ))}
             </ul>
           </div>
-          <div className="reveal space-y-6 lg:pt-10">
+          <div className="space-y-6 lg:pt-10">
             <div className="rounded-lg border border-line bg-white p-7">
               <h3 className="text-lg font-semibold">If anyone&apos;s safety is at risk</h3>
               <p className="mt-2 leading-relaxed">

@@ -35,7 +35,7 @@ export default function IndustriesPage() {
             {industries.map((ind) => {
               const photo = photos[ind.photo];
               return (
-                <li key={ind.slug} className="reveal">
+                <li key={ind.slug}>
                   <Link
                     href={`/industries/${ind.slug}`}
                     className="group grid h-full overflow-hidden rounded-lg border border-line bg-white transition-shadow duration-300 hover:shadow-[0_20px_40px_-24px_rgba(10,21,40,0.35)] sm:grid-cols-[13rem_1fr]"
@@ -47,7 +47,7 @@ export default function IndustriesPage() {
                         fill
                         sizes="(min-width: 640px) 13rem, 100vw"
                         placeholder="blur"
-                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                        className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                       />
                     </div>
                     <div className="flex flex-col p-7">
@@ -57,7 +57,7 @@ export default function IndustriesPage() {
                         Learn more
                         <ArrowRight
                           aria-hidden="true"
-                          className="h-4 w-4 text-flare transition-transform duration-200 group-hover:translate-x-1"
+                          className="h-4 w-4 text-accent-500 transition-transform duration-200 group-hover:translate-x-1"
                         />
                       </span>
                     </div>

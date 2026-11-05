@@ -19,7 +19,7 @@ export function SectionHeader({
 }) {
   const dark = tone === "dark";
   return (
-    <div className={`reveal max-w-3xl ${align === "center" ? "mx-auto text-center" : ""}`}>
+    <div className={`max-w-3xl ${align === "center" ? "mx-auto text-center" : ""}`}>
       {eyebrow && <p className={`eyebrow ${dark ? "eyebrow-dark" : ""}`}>{eyebrow}</p>}
       <Tag className={`display mt-4 text-[2rem] sm:text-[2.5rem] ${dark ? "text-white" : "text-ink"}`}>{title}</Tag>
       {intro && <p className={`mt-5 text-lg leading-relaxed ${dark ? "text-silver-300" : "text-body"}`}>{intro}</p>}
