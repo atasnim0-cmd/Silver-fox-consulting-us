@@ -4,6 +4,7 @@ import { headers } from "next/headers";
 import { Resend } from "resend";
 import { z } from "zod";
 import { TOPIC_VALUES, topicLabel } from "@/lib/contact-topics";
+import { isLive } from "@/lib/env";
 
 export type ContactState = {
   status: "idle" | "success" | "error";
@@ -36,7 +37,7 @@ const schema = z.object({
   source: z.string().max(100).optional(),
 });
 
-const isProd = process.env.VERCEL_ENV === "production";
+const isProd = isLive;
 
 async function verifyTurnstile(token: string | null): Promise<boolean> {
   const secret = process.env.TURNSTILE_SECRET_KEY;

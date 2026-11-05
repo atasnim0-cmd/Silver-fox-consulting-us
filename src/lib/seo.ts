@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { site } from "@/content/site";
+import { isLive } from "./env";
 
-/** True only on the live production deployment. Previews and local builds stay out of search. */
-export const isProduction = process.env.VERCEL_ENV === "production";
+/** True only on the live domain. Previews, local builds and the vercel.app production URL stay out of search. */
+export const isProduction = isLive;
 
 export function absoluteUrl(path = "/"): string {
   return new URL(path, site.url).toString();

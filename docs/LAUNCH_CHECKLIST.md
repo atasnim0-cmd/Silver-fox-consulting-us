@@ -1,6 +1,6 @@
 # Launch checklist
 
-Work through this list before pointing the domain at production. Items marked **(blocks deploy)** are enforced by `npm run check:launch`, which runs automatically on Vercel production builds.
+Work through this list before pointing the domain at production. Items marked **(blocks deploy)** are enforced by `npm run check:launch`. It runs before every build, and it starts blocking production deploys automatically as soon as silver-fox-consulting.us is added to the Vercel project. Until then, production deploys on the temporary vercel.app address go through, stay out of search engines, and the contact form logs submissions to the Vercel function logs instead of emailing them.
 
 ## 1. Company details (blocks deploy)
 

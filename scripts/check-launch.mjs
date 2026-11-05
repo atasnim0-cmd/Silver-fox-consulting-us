@@ -2,9 +2,11 @@
 /**
  * Pre-launch gate.
  *
- * Runs before every build. It only enforces on Vercel production deployments
- * (VERCEL_ENV=production), so local builds and preview deployments keep working
- * while placeholders are still in place. Run it manually with:
+ * Runs before every build. It only enforces on Vercel production deployments served
+ * on the live domain (silver-fox-consulting.us). Local builds, previews and production
+ * builds on the temporary vercel.app address keep working while placeholders are
+ * still in place. Vercel sets VERCEL_PROJECT_PRODUCTION_URL to the custom domain once
+ * it is added, which switches enforcement on automatically. Run it manually with:
  *
  *   npm run check:launch
  *
@@ -17,10 +19,14 @@
 import { readFileSync } from "node:fs";
 
 const force = process.argv.includes("--force");
-const enforce = force || process.env.VERCEL_ENV === "production";
+const LIVE_DOMAIN = "silver-fox-consulting.us";
+const onLiveDomain = (process.env.VERCEL_PROJECT_PRODUCTION_URL ?? "").replace(/^www\./, "") === LIVE_DOMAIN;
+const enforce = force || (process.env.VERCEL_ENV === "production" && onLiveDomain);
 
 if (!enforce) {
-  console.log("Launch check skipped (not a production deployment). Run `npm run check:launch` to check manually.");
+  console.log(
+    "Launch check skipped (not a production build on the live domain). Run `npm run check:launch` to check manually.",
+  );
   process.exit(0);
 }
 

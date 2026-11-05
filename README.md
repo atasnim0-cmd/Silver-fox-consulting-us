@@ -130,7 +130,7 @@ Three checks run before every build and in CI. A failure stops the build.
 
 **Copy check** (`scripts/check-copy.mjs`). Site copy and documentation must not contain em dashes, en dashes, ellipsis characters, curly quotes or any of the stock marketing phrases listed in the script. Copy is written in American English.
 
-**Launch check** (`scripts/check-launch.mjs`). On Vercel production builds only, the build fails while `src/content/site.ts` still holds placeholder values or unconfirmed claims, while any required environment variable is missing, or when `security.txt` is within 30 days of expiring. Preview deployments are not affected.
+**Launch check** (`scripts/check-launch.mjs`). On production builds served on silver-fox-consulting.us, the build fails while `src/content/site.ts` still holds placeholder values or unconfirmed claims, while any required environment variable is missing, or when `security.txt` is within 30 days of expiring. Preview deployments and production builds on the temporary vercel.app address are not affected.
 
 **Static rendering.** The root layout sets `ensureStatic = "navigation"`, so the build fails if a change would make any page render on each request.
 
@@ -156,7 +156,7 @@ See [docs/SECURITY.md](docs/SECURITY.md) for the reasoning behind the policy. To
 
 ## Deployment
 
-Pushes to `main` deploy to production through the Vercel GitHub integration. Every pull request receives its own preview URL, and preview deployments are excluded from search engines.
+Pushes to `main` deploy to production through the Vercel GitHub integration. Every pull request receives its own preview URL. Search engines are blocked everywhere except the live domain, including the vercel.app production address.
 
 - [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) covers GitHub, Vercel, Cloudflare DNS, Spaceship and email DNS records.
 - [docs/LAUNCH_CHECKLIST.md](docs/LAUNCH_CHECKLIST.md) lists everything that must be confirmed before the first production release.
