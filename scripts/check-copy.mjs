@@ -7,7 +7,8 @@
  *
  *   npm run check:copy
  *
- * Scans the content and page source (src/content, src/app, src/components).
+ * Scans the content and page source (src/content, src/app, src/components),
+ * the docs folder and the README.
  * Code comments are scanned too, on purpose: comments end up quoted in
  * reviews and pull requests, and the rule is simple to follow everywhere.
  */
@@ -15,7 +16,8 @@ import { readFileSync, readdirSync, statSync } from "node:fs";
 import { join, relative } from "node:path";
 
 const ROOT = process.cwd();
-const DIRS = ["src/content", "src/app", "src/components"];
+const DIRS = ["src/content", "src/app", "src/components", "docs"];
+const FILES = ["README.md"];
 const EXT = /\.(tsx?|mdx?|json)$/;
 
 /** Characters that should never appear in copy. */
@@ -109,10 +111,11 @@ const phraseRes = BANNED_PHRASES.map((ph) => ({
 }));
 
 let problems = 0;
-for (const d of DIRS) {
+const groups = [...DIRS.map((d) => () => walk(join(ROOT, d))), () => FILES.map((f) => join(ROOT, f))];
+for (const list of groups) {
   let files;
   try {
-    files = walk(join(ROOT, d));
+    files = list();
   } catch {
     continue;
   }

@@ -1,82 +1,177 @@
-# silver-fox-consulting.us
+# Silver Fox Consulting (US)
 
-Marketing website for **Silver Fox LLC**, the U.S. (Texas) cybersecurity business.
+Source code for [silver-fox-consulting.us](https://silver-fox-consulting.us), the website of Silver Fox LLC, a cybersecurity consulting firm based in Texas.
 
-- **Framework:** Next.js 16 (App Router, Cache Components), React 19, TypeScript
-- **Styling:** Tailwind CSS 4, with design tokens in `src/app/globals.css`
-- **Motion:** `motion` for menus, tabs and counters; adapted [Motion Primitives](https://github.com/ibelick/motion-primitives) components (MIT, credited in each file under `src/components/motion-primitives/`); [anime.js](https://animejs.com) v4 for the home page network diagram, loaded lazily
-- **Forms:** server action, Zod validation, Cloudflare Turnstile and Resend email
-- **Hosting:** Vercel, with DNS on Cloudflare (DNS only) and the domain registered at Spaceship
+The site covers six service practices, 17 compliance frameworks, six industries and three in-house platforms, along with a contact form, an incident response page and the usual legal pages. Every page is statically generated and served from Vercel's edge network.
 
-Every page is statically generated. The root layout sets `ensureStatic = "navigation"`, so the build fails if a change ever makes a page render per request.
+## Contents
 
-## Design and motion rules
+- [Tech stack](#tech-stack)
+- [Requirements](#requirements)
+- [Getting started](#getting-started)
+- [Environment variables](#environment-variables)
+- [Available scripts](#available-scripts)
+- [Project structure](#project-structure)
+- [Editing content](#editing-content)
+- [Quality gates](#quality-gates)
+- [Design and accessibility](#design-and-accessibility)
+- [Security](#security)
+- [Deployment](#deployment)
+- [Contributing](#contributing)
+- [License](#license)
 
-The design follows Vercel's Web Interface Guidelines and the taste-skill guidance for company sites:
+## Tech stack
 
-- Colors are navy, white and one blue accent family (`accent-*` in `globals.css`). No orange anywhere. The logo mark is dark blue (`accent-800`) on light backgrounds and white on dark ones.
-- Content is never hidden waiting for JavaScript or scroll position. The hero headline animates with CSS from first paint.
-- Motion is limited to hover and press feedback, the hero diagram (with a pause button, and paused when off screen), counters, the tab and category indicators, and the reading-progress bar. Everything respects `prefers-reduced-motion`.
-- Only `transform`, `opacity`, `box-shadow` and `border-color` are transitioned, never `transition: all`.
-- Inputs use 16px text so iOS does not zoom, and tap targets are at least 44px on phones.
+| Area | Choice |
+| --- | --- |
+| Framework | Next.js 16 (App Router, Cache Components, fully static output) |
+| Language | TypeScript 5 |
+| UI | React 19, Tailwind CSS 4 |
+| Motion | Motion for React, anime.js 4, and components adapted from Motion Primitives |
+| Forms | Server Actions with Zod validation, Cloudflare Turnstile, Resend for email |
+| Hosting | Vercel, with DNS on Cloudflare and the domain registered at Spaceship |
+| CI | GitHub Actions and Dependabot |
+
+## Requirements
+
+- Node.js 20.9 or later (CI and Vercel use Node 24)
+- npm 10 or later
 
 ## Getting started
 
 ```bash
-npm install
-cp .env.example .env.local   # optional; the form logs to the console without keys
-npm run dev                  # http://localhost:3000
+git clone https://github.com/atasnim0-cmd/Silver-fox-consulting-us.git
+cd Silver-fox-consulting-us
+npm ci
+npm run dev
 ```
 
-## Scripts
+The site runs at http://localhost:3000. The contact form works locally without any keys: submissions are printed to the terminal instead of being emailed.
 
-| Command | What it does |
+To test the full form flow, copy the example environment file and fill in the values described below:
+
+```bash
+cp .env.example .env.local
+```
+
+## Environment variables
+
+Set these in Vercel under Project Settings, Environment Variables, for both Production and Preview. Locally they live in `.env.local`, which git ignores.
+
+| Variable | Required in production | Purpose |
+| --- | --- | --- |
+| `RESEND_API_KEY` | Yes | API key used to send contact form email through Resend |
+| `CONTACT_TO_EMAIL` | Yes | Inbox that receives contact form messages. Separate several addresses with commas. |
+| `CONTACT_FROM_EMAIL` | Yes | Sender address on a domain verified in Resend |
+| `NEXT_PUBLIC_TURNSTILE_SITE_KEY` | Yes | Cloudflare Turnstile site key, used by the browser |
+| `TURNSTILE_SECRET_KEY` | Yes | Cloudflare Turnstile secret key, used by the server |
+
+Cloudflare publishes always-pass Turnstile test keys for local development. They are listed in `.env.example`.
+
+## Available scripts
+
+| Command | Description |
 | --- | --- |
-| `npm run dev` | Local development server |
-| `npm run build` | Production build. Runs the copy check and launch check first |
+| `npm run dev` | Start the development server |
+| `npm run build` | Create a production build. Runs the copy check and launch check first. |
 | `npm run start` | Serve the production build locally |
-| `npm run lint` | ESLint |
-| `npm run typecheck` | Generates route types, then runs `tsc` |
-| `npm run check:copy` | Fails on em dashes, curly quotes and banned marketing phrases |
-| `npm run check:launch` | Fails while placeholders, unconfirmed claims or missing secrets remain |
-| `npm run ci` | Everything CI runs, in order |
+| `npm run lint` | Run ESLint |
+| `npm run typecheck` | Generate route types and run the TypeScript compiler |
+| `npm run format` | Format the codebase with Prettier |
+| `npm run check:copy` | Check site copy and documentation against the writing rules |
+| `npm run check:launch` | Check that no placeholder content or missing secret would reach production |
+| `npm run ci` | Run the same checks as CI, in the same order |
 
-## Where things live
+## Project structure
 
 ```
-src/
-  app/                 Routes (one folder per page), sitemap, robots, icons, OG image
-  components/
-    layout/            Utility bar, header with mega menu, footer
-    sections/          Reusable page sections (hero, FAQ, steps, CTA band, ...)
-    home/              Home page attack path animation
-    contact/           Contact form and Turnstile widget
-  content/             ALL site copy and company details
-    site.ts            Phone numbers, address, emails (placeholders marked here)
-    services.ts        The six service pages
-    compliance.ts      Framework pages (CMMC, SOC 2, HIPAA, PCI DSS, TX-RAMP, ISO 27001, NIST CSF)
-    industries.ts      Industry pages
-    platforms.ts       SCOPE, SIGNAL and RANGE
-  lib/                 SEO helpers, schema.org builders, contact topics
-scripts/               check-copy and check-launch
-docs/                  Launch checklist, deployment, security notes, photo credits
+.
+|-- .github/              CI workflow and Dependabot configuration
+|-- docs/                 Deployment, launch, security and photo credit notes
+|-- public/               Static files, including /.well-known/security.txt
+|-- scripts/              Copy check and launch check
+`-- src/
+    |-- app/              Routes, metadata, sitemap, robots, icons and the share image
+    |-- assets/photos/    Photography served through next/image
+    |-- components/
+    |   |-- brand/        Logo
+    |   |-- compliance/   Compliance hub navigation
+    |   |-- contact/      Contact form and Turnstile widget
+    |   |-- home/         Home page hero diagram and attack path
+    |   |-- layout/       Header and footer
+    |   |-- motion-primitives/   Adapted animation components
+    |   |-- sections/     Reusable page sections
+    |   |-- seo/          Structured data
+    |   `-- ui/           Buttons, links and breadcrumbs
+    |-- content/          All site copy and company details
+    `-- lib/              SEO helpers, schema.org builders and form topics
 ```
 
-### Editing copy
+## Editing content
 
-Almost all text lives in `src/content/*.ts`. Change it there and the pages update. A few page-specific sections (About, Engineering, Contact, Emergency, the legal pages) are written directly in their `page.tsx` files.
+Almost all copy lives in `src/content`. Editing those files updates every page that uses them.
 
-### Copy rules
+| File | What it controls |
+| --- | --- |
+| `site.ts` | Company name, phone numbers, address, email addresses and business hours |
+| `services.ts` | The six service pages |
+| `compliance.ts` and `compliance-extra.ts` | The 17 compliance framework pages and their categories |
+| `industries.ts` | The six industry pages |
+| `platforms.ts` | The SCOPE, SIGNAL and RANGE pages |
+| `photos.ts` | Photo imports and alt text |
 
-The copy check runs before every build and in CI. It rejects:
+The About, Engineering, Contact, Emergency and legal pages keep their copy in their own `page.tsx` files under `src/app`.
 
-- em dashes, en dashes, ellipsis characters and curly quotes
-- stock marketing words such as "leverage", "seamless", "robust", "cutting-edge", "holistic" and "comprehensive"
+To add a compliance framework, add an entry to `compliance-extra.ts` and add its slug to the `ORDER` list in `compliance.ts`. The page, navigation, sitemap and contact form topics pick it up from there.
 
-Also write in American English (organization, defense, prioritize), and avoid the "it's not X, it's Y" sentence pattern. The full list is in `scripts/check-copy.mjs`.
+## Quality gates
 
-## Before launch
+Three checks run before every build and in CI. A failure stops the build.
 
-Read **[docs/LAUNCH_CHECKLIST.md](docs/LAUNCH_CHECKLIST.md)**. Production deployments are blocked by `scripts/check-launch.mjs` until the placeholders in `src/content/site.ts` are replaced and the required environment variables are set.
+**Copy check** (`scripts/check-copy.mjs`). Site copy and documentation must not contain em dashes, en dashes, ellipsis characters, curly quotes or any of the stock marketing phrases listed in the script. Copy is written in American English.
 
-Deployment steps for GitHub, Vercel, Spaceship and Cloudflare are in **[docs/DEPLOYMENT.md](docs/DEPLOYMENT.md)**.
+**Launch check** (`scripts/check-launch.mjs`). On Vercel production builds only, the build fails while `src/content/site.ts` still holds placeholder values or unconfirmed claims, while any required environment variable is missing, or when `security.txt` is within 30 days of expiring. Preview deployments are not affected.
+
+**Static rendering.** The root layout sets `ensureStatic = "navigation"`, so the build fails if a change would make any page render on each request.
+
+CI also runs ESLint, the TypeScript compiler and `npm audit` against production dependencies.
+
+## Design and accessibility
+
+The interface follows the Vercel Web Interface Guidelines and targets WCAG 2.1 AA.
+
+- The palette is navy, white and a single blue accent scale defined in `src/app/globals.css`. The logo mark is dark blue on light backgrounds and white on dark backgrounds.
+- Content is never hidden while waiting for JavaScript or for the visitor to scroll. The hero headline animates in CSS from first paint.
+- Motion is limited to hover and press feedback, the hero diagram, counters, tab indicators and a reading progress bar. The hero diagram has a pause control and stops when off screen. All motion respects `prefers-reduced-motion`.
+- Only `transform`, `opacity`, `box-shadow` and `border-color` are animated.
+- Form inputs use 16px text to prevent zoom on iOS, and touch targets are at least 44px on phones.
+
+At the time of writing, audited pages score 100 for accessibility in Lighthouse with no axe violations, and 92 or higher for mobile performance.
+
+## Security
+
+Every response carries a Content Security Policy, HSTS, `X-Content-Type-Options`, `X-Frame-Options`, a strict referrer policy and a restrictive permissions policy, all configured in `next.config.ts`. The contact form validates input on the server, verifies Turnstile tokens and uses a honeypot field.
+
+See [docs/SECURITY.md](docs/SECURITY.md) for the reasoning behind the policy. To report a vulnerability, email security@silver-fox-consulting.us. The address is also published in `/.well-known/security.txt`.
+
+## Deployment
+
+Pushes to `main` deploy to production through the Vercel GitHub integration. Every pull request receives its own preview URL, and preview deployments are excluded from search engines.
+
+- [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) covers GitHub, Vercel, Cloudflare DNS, Spaceship and email DNS records.
+- [docs/LAUNCH_CHECKLIST.md](docs/LAUNCH_CHECKLIST.md) lists everything that must be confirmed before the first production release.
+- [docs/PHOTO_CREDITS.md](docs/PHOTO_CREDITS.md) records the source of every photograph.
+
+## Contributing
+
+1. Create a branch from `main`.
+2. Make your change and run `npm run ci` locally.
+3. Open a pull request. CI must pass and the Vercel preview should be reviewed before merging.
+
+Commit messages use the imperative mood, for example "Add SOC 3 page" rather than "Added SOC 3 page".
+
+## License
+
+Copyright 2026 Silver Fox LLC. All rights reserved. This repository is proprietary and is not licensed for reuse.
+
+Third-party components keep their own licenses. Code adapted from [Motion Primitives](https://github.com/ibelick/motion-primitives) is used under the MIT License, credited in each file. Photographs are used under the [Unsplash License](https://unsplash.com/license).
