@@ -13,7 +13,8 @@
  * It fails when:
  *   - src/content/site.ts still contains LAUNCH-PLACEHOLDER or LAUNCH-CONFIRM markers
  *   - fictional 555-01xx phone numbers or the example street address remain
- *   - required environment variables for the contact form are missing
+ *   - (warning only) contact form keys are missing; the contact page then shows
+ *     direct email and phone details instead of the form
  *   - public/.well-known/security.txt has expired or expires within 30 days
  */
 import { readFileSync } from "node:fs";
@@ -48,8 +49,11 @@ const requiredEnv = [
   "TURNSTILE_SECRET_KEY",
   "NEXT_PUBLIC_TURNSTILE_SITE_KEY",
 ];
-for (const key of requiredEnv) {
-  if (!process.env[key]) problems.push(`missing environment variable ${key}`);
+const missingEnv = requiredEnv.filter((key) => !process.env[key]);
+if (missingEnv.length > 0) {
+  console.warn(
+    `Warning: contact form keys missing (${missingEnv.join(", ")}). The contact page will show direct contact details until they are set.`,
+  );
 }
 
 const sec = readFileSync("public/.well-known/security.txt", "utf8");

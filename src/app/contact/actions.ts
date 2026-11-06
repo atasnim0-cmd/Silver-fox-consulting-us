@@ -4,7 +4,7 @@ import { headers } from "next/headers";
 import { Resend } from "resend";
 import { z } from "zod";
 import { TOPIC_VALUES, topicLabel } from "@/lib/contact-topics";
-import { isLive } from "@/lib/env";
+import { onVercel } from "@/lib/form-config";
 
 export type ContactState = {
   status: "idle" | "success" | "error";
@@ -37,11 +37,9 @@ const schema = z.object({
   source: z.string().max(100).optional(),
 });
 
-const isProd = isLive;
-
 async function verifyTurnstile(token: string | null): Promise<boolean> {
   const secret = process.env.TURNSTILE_SECRET_KEY;
-  if (!secret) return !isProd; // Allowed only outside production.
+  if (!secret) return !onVercel; // Skipped only in local development.
   if (!token) return false;
   const h = await headers();
   const ip = h.get("x-real-ip") ?? h.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "";
@@ -117,7 +115,7 @@ async function handleSubmission(formData: FormData): Promise<ContactState> {
   const from = process.env.CONTACT_FROM_EMAIL;
 
   if (!apiKey || !to || !from) {
-    if (isProd) {
+    if (onVercel) {
       console.error("Contact form is not configured: RESEND_API_KEY, CONTACT_TO_EMAIL or CONTACT_FROM_EMAIL missing.");
       return {
         status: "error",

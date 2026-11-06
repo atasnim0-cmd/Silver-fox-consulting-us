@@ -1,10 +1,9 @@
 /**
  * Company details used across the whole site.
  *
- * Every value marked LAUNCH-PLACEHOLDER is a stand-in. `npm run check:launch`
- * fails the production build on Vercel until all of them are replaced.
- * Phone numbers use the 555-01xx range, which is reserved for fiction and can
- * never ring a real person.
+ * If a value is ever a stand-in, mark it with a trailing LAUNCH-PLACEHOLDER
+ * comment (or LAUNCH-CONFIRM for an unverified claim). `npm run check:launch`
+ * fails production builds on the live domain while any marker remains.
  */
 
 export const site = {
@@ -22,27 +21,27 @@ export const site = {
   privacyEmail: "privacy@silver-fox-consulting.us",
 
   phone: {
-    display: "(512) 555-0147", // LAUNCH-PLACEHOLDER
-    tel: "+15125550147", // LAUNCH-PLACEHOLDER
+    display: "+1 (484) 657-3168",
+    tel: "+14846573168",
   },
 
   /**
-   * Incident line. Only describe it as round-the-clock if someone really
-   * answers at 3 a.m. on a Sunday. Set `roundTheClock` to false otherwise and
-   * the site will show business hours instead.
+   * Incident line. Currently the main number. Only set `roundTheClock` to true
+   * once someone really answers at 3 a.m. on a Sunday; while it is false the
+   * site shows business hours instead of "24/7".
    */
   incidentLine: {
-    display: "(512) 555-0199", // LAUNCH-PLACEHOLDER
-    tel: "+15125550199", // LAUNCH-PLACEHOLDER
-    roundTheClock: true, // LAUNCH-CONFIRM: is this line staffed 24/7?
+    display: "+1 (484) 657-3168",
+    tel: "+14846573168",
+    roundTheClock: false,
   },
 
   address: {
-    street: "1201 Example Ave, Suite 300", // LAUNCH-PLACEHOLDER
-    city: "Austin", // LAUNCH-PLACEHOLDER
+    street: "Hall Office Park",
+    city: "Frisco",
     region: "TX",
     regionName: "Texas",
-    postalCode: "78701", // LAUNCH-PLACEHOLDER
+    postalCode: "75034",
     country: "US",
   },
 

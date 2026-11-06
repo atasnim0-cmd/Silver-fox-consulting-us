@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
 import { ContactForm } from "@/components/contact/ContactForm";
+import { contactFormReady } from "@/lib/form-config";
 import { PageHero } from "@/components/sections/PageHero";
 import { fullAddress, incidentAvailability, site } from "@/content/site";
 import { pageMetadata } from "@/lib/seo";
@@ -86,7 +87,37 @@ export default function ContactPage() {
             </div>
           </div>
 
-          <ContactForm />
+          {contactFormReady ? (
+            <ContactForm />
+          ) : (
+            <div className="self-start rounded-lg border border-line bg-mist p-8 sm:p-10">
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted">Get in touch</p>
+              <h2 className="display mt-4 text-3xl">Email or call us directly.</h2>
+              <p className="mt-4 text-lg leading-relaxed">
+                Tell us what you are trying to protect, test, investigate or build, and a specialist will get back to
+                you to set up a short call.
+              </p>
+              <div className="mt-8 grid gap-3 sm:grid-cols-2">
+                <a
+                  href={`mailto:${site.email}`}
+                  className="press inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-navy-900 px-5 font-semibold text-white hover:bg-accent-800"
+                >
+                  <Mail aria-hidden="true" className="h-4 w-4" />
+                  Email us
+                </a>
+                <a
+                  href={`tel:${site.phone.tel}`}
+                  className="press inline-flex min-h-12 items-center justify-center gap-2 rounded-md border border-navy-900/20 bg-white px-5 font-semibold text-navy-900"
+                >
+                  <Phone aria-hidden="true" className="h-4 w-4 text-accent-700" />
+                  Call us
+                </a>
+              </div>
+              <p className="mt-6 text-sm text-muted">
+                Please do not send passwords, keys or confidential incident details by email.
+              </p>
+            </div>
+          )}
         </div>
       </section>
     </>

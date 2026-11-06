@@ -235,7 +235,7 @@ export const industries: Industry[] = [
         "PCI DSS and SOC 2 readiness",
       ],
     },
-    frameworks: ["pci-dss", "soc-1", "soc-2", "nist-csf"],
+    frameworks: ["pci-dss", "swift-cscf", "soc-1", "soc-2", "nist-csf"],
     services: [
       "penetration-testing",
       "identity-data-security",

@@ -12,6 +12,8 @@ import type { Framework, FrameworkCategory } from "./types";
  * - NIST CSF 2.0 published Feb 26, 2024.
  * - ISO/IEC 27001:2022 Annex A has 93 controls in 4 themes.
  * - Texas breach notification: Bus. & Com. Code 521.053.
+ * - Swift CSP: annual CSCF attestation in KYC-SA by December 31, supported by an
+ *   independent internal or external assessment; architecture types A1 to A4 and B.
  */
 
 const coreFrameworks: Framework[] = [
@@ -843,6 +845,7 @@ const ORDER = [
   "hipaa",
   "pci-dss",
   "tx-ramp",
+  "swift-cscf",
 ];
 
 const all = [...coreFrameworks, ...extraFrameworks];

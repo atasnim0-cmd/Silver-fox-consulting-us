@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Crosshair, ShieldCheck, Wrench } from "lucide-react";
@@ -44,8 +44,8 @@ const pillars = [
 ];
 
 const cities = [
+  { name: "Dallas", photo: photos.dallasNightReunion },
   { name: "Austin", photo: photos.austinSkylineDay },
-  { name: "Dallas", photo: photos.dallasSkylineDusk },
   { name: "Houston", photo: photos.houstonSkylineNight },
   { name: "San Antonio", photo: photos.sanAntonioRiverwalk },
 ];
@@ -67,13 +67,13 @@ export default function HomePage() {
       {/* Hero */}
       <section className="relative isolate overflow-hidden bg-navy-950">
         <Image
-          src={photos.austinSkylineDusk.src}
+          src={photos.dallasSkylineDusk.src}
           alt=""
           fill
           priority
           sizes="100vw"
           placeholder="blur"
-          className="-z-20 object-cover object-[60%_40%]"
+          className="-z-20 object-cover object-[55%_50%]"
         />
         <div className="absolute inset-0 -z-10 bg-gradient-to-r from-navy-950 via-navy-950/85 to-navy-950/45" />
         <div className="absolute inset-x-0 bottom-0 -z-10 h-56 bg-gradient-to-t from-navy-950 to-transparent" />

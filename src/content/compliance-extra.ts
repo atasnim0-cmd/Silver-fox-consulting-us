@@ -1028,4 +1028,132 @@ export const extraFrameworks: Framework[] = [
       },
     ],
   },
+  {
+    slug: "swift-cscf",
+    category: "us",
+    name: "Swift Customer Security Controls Framework",
+    short: "Swift CSCF",
+    blurb: "Readiness and independent assessment for the annual Swift Customer Security Programme attestation.",
+    appliesTo: "Banks and institutions connected to Swift",
+    metaTitle: "Swift CSCF Readiness & Independent Assessment",
+    metaDescription:
+      "Swift Customer Security Controls Framework scoping, gap assessments, remediation and independent assessments for banks, credit unions, broker-dealers and corporates.",
+    hero: {
+      eyebrow: "Compliance / Swift CSCF",
+      title: "Get your annual Swift attestation right, with evidence behind it.",
+      intro: [
+        "Every organization connected to the Swift network must attest each year to its compliance with the Customer Security Controls Framework (CSCF), the set of security controls at the center of the Swift Customer Security Programme (CSP). The attestation is submitted through the KYC Security Attestation application, and counterparties can ask to see it.",
+        "Attestations must be supported by an independent assessment. We help banks, credit unions, broker-dealers and corporates scope their Swift environment, close gaps against the current CSCF version and complete an independent assessment that holds up to scrutiny.",
+      ],
+    },
+    facts: [
+      { label: "Set by", value: "Swift, for every user of its network" },
+      { label: "Cycle", value: "Annual attestation by December 31, against a CSCF version updated every year" },
+      { label: "Submission", value: "The KYC Security Attestation (KYC-SA) application" },
+      { label: "Evidence", value: "An independent internal or external assessment" },
+      { label: "Scope", value: "Set by your architecture type, A1 to A4 or B" },
+    ],
+    overview: {
+      title: "Your architecture type decides your scope",
+      body: [
+        "The controls that apply depend on how you connect to Swift. The framework defines architecture types, from organizations that run their own messaging and communication interfaces to those that rely entirely on a service provider. Getting the architecture type right comes first, because it decides which mandatory and advisory controls you have to meet.",
+        "Swift updates the framework every year and sometimes promotes advisory controls to mandatory. A program that passed last year can fall short this year without anything changing on your side.",
+      ],
+    },
+    help: [
+      {
+        id: "scoping",
+        title: "Scoping and architecture",
+        summary: "Start from the right architecture type and a clear boundary.",
+        groups: [
+          {
+            items: [
+              "Architecture type determination",
+              "Secure zone design and review",
+              "Inventory of Swift components, operators and connections",
+              "Service provider and service bureau dependencies",
+            ],
+          },
+        ],
+      },
+      {
+        id: "gap-assessment",
+        title: "Gap assessment",
+        summary: "Measure where you stand against this year's version.",
+        groups: [
+          {
+            items: [
+              "Assessment against the current CSCF version",
+              "Review of mandatory and advisory controls",
+              "Review of changes introduced in the new version",
+              "Prioritized remediation plan",
+            ],
+          },
+        ],
+      },
+      {
+        id: "remediation",
+        title: "Remediation",
+        summary: "Close the gaps before the attestation deadline.",
+        groups: [
+          {
+            items: [
+              "Secure zone segmentation",
+              "Multi-factor authentication for operators",
+              "Privileged account control and session security",
+              "Logging, monitoring and transaction anomaly detection",
+              "Vulnerability scanning and patching",
+              "Backup and incident response planning",
+            ],
+          },
+        ],
+      },
+      {
+        id: "independent-assessment",
+        title: "Independent assessment",
+        summary: "The evidence your attestation depends on.",
+        groups: [
+          {
+            items: [
+              "Independent external assessment against the CSCF",
+              "Testing of control design and operation",
+              "Assessment report to support your KYC-SA attestation",
+              "Support for internal audit teams performing internal assessments",
+            ],
+          },
+        ],
+      },
+    ],
+    boundary: {
+      title: "Who submits the attestation",
+      body: "Your organization submits and signs its own attestation in the KYC-SA application. We prepare you and can perform the independent assessment. When we do, we keep that assessment separate from any remediation work we carried out for you.",
+    },
+    timeline: [
+      { title: "Scope", body: "Confirm the architecture type and the secure zone boundary." },
+      { title: "Assess", body: "Compare current controls against this year's CSCF version." },
+      { title: "Remediate", body: "Close mandatory gaps first, then advisory ones." },
+      { title: "Independent assessment", body: "Test the controls and document the evidence." },
+      { title: "Attest", body: "Submit the attestation in KYC-SA before December 31." },
+    ],
+    services: [
+      "strategy-risk-compliance",
+      "penetration-testing",
+      "identity-data-security",
+      "managed-detection-response",
+    ],
+    faqs: [
+      {
+        q: "Who has to comply with the Swift CSCF?",
+        a: "Every organization that uses the Swift network, including banks, credit unions, broker-dealers, market infrastructures and corporates that connect directly or through a service bureau. The controls that apply depend on your architecture type.",
+      },
+      {
+        q: "Can our internal audit team do the independent assessment?",
+        a: "Yes, as long as the team is independent of the people who operate and secure the Swift environment, typically a second or third line function. Many organizations use an external assessor instead, or alternate between the two.",
+      },
+      {
+        q: "What happens if we do not attest or are not compliant?",
+        a: "Counterparties review attestation status as part of their own risk assessments, and Swift may report organizations that fail to attest to their supervisors. Weak attestation results can also make correspondent banking relationships harder to keep.",
+      },
+    ],
+  },
 ];

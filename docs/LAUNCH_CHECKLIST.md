@@ -2,15 +2,15 @@
 
 Work through this list before pointing the domain at production. Items marked **(blocks deploy)** are enforced by `npm run check:launch`. It runs before every build, and it starts blocking production deploys automatically as soon as silver-fox-consulting.us is added to the Vercel project. Until then, production deploys on the temporary vercel.app address go through, stay out of search engines, and the contact form logs submissions to the Vercel function logs instead of emailing them.
 
-## 1. Company details (blocks deploy)
+## 1. Company details
 
-All of these are in `src/content/site.ts`. Remove each `LAUNCH-PLACEHOLDER` or `LAUNCH-CONFIRM` comment once the value is real.
+Set in `src/content/site.ts`.
 
-- [ ] Main phone number (currently a fictional 555 number)
-- [ ] Incident line number (currently a fictional 555 number)
-- [ ] Confirm the incident line is really staffed 24/7. If not, set `roundTheClock: false` and the site shows business hours instead.
-- [ ] Street address, city and ZIP code. The city also appears in the utility bar, the home page and the About page.
-- [ ] Business hours
+- [x] Main phone number: +1 (484) 657-3168
+- [x] Address: Hall Office Park, Frisco, TX 75034
+- [x] Incident line: currently the main number, shown with business hours
+- [ ] Confirm the incident line is really staffed 24/7 before setting `roundTheClock` to true (this also restores "24/7" in the home page stats)
+- [ ] Confirm business hours (currently Monday through Friday, 8 a.m. to 6 p.m. Central)
 - [ ] LinkedIn URL, if you have one (leave empty to hide)
 
 ## 2. Claims to confirm with leadership
@@ -29,6 +29,7 @@ These statements are reasonable for a firm like this, but only the company can c
 | Silver Fox helps certification bodies with ISO/IEC 17021-1 accreditation readiness | `src/content/compliance-extra.ts` |
 | The services described on the 10 newer framework pages (ISO 9001, 27017, 17021-1, 62443; NIST 800-53, 800-171, 800-61, SSDF; SOC 1 and 3) are offered | `src/content/compliance-extra.ts` |
 | Home page stat "24/7 incident response line" (shown only while `roundTheClock` is true) | `src/app/page.tsx` |
+| Silver Fox performs Swift CSCF independent assessments | `src/content/compliance-extra.ts` |
 
 **Authorizations.** The compliance pages say plainly that Silver Fox prepares clients for assessments and that certifications are issued by third parties. If Silver Fox is (or becomes) a CMMC C3PAO, a PCI QSA company or a CPA firm, those pages can be updated. Until then, do not describe the company as certifying anyone.
 
@@ -45,9 +46,9 @@ These statements are reasonable for a firm like this, but only the company can c
 - [ ] The domain is verified in Resend, and the sending address (for example `website@silver-fox-consulting.us`) works
 - [ ] SPF, DKIM and DMARC records are published. See `docs/DEPLOYMENT.md`.
 
-## 5. Environment variables in Vercel (blocks deploy)
+## 5. Environment variables in Vercel (contact form)
 
-Set these for **Production** and **Preview** in Vercel under Project Settings, Environment Variables:
+Until these are set, the contact page shows direct email and phone details instead of the form. After setting them for **Production** and **Preview** under Project Settings, Environment Variables, redeploy so the form appears:
 
 - [ ] `RESEND_API_KEY`
 - [ ] `CONTACT_TO_EMAIL`

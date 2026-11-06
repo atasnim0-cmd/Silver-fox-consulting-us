@@ -27,6 +27,7 @@ export const TOPICS: Topic[] = [
   { value: "hipaa", label: "HIPAA", group: "Compliance: US and industry" },
   { value: "pci-dss", label: "PCI DSS", group: "Compliance: US and industry" },
   { value: "tx-ramp", label: "TX-RAMP", group: "Compliance: US and industry" },
+  { value: "swift-cscf", label: "Swift CSCF", group: "Compliance: US and industry" },
   { value: "compliance", label: "Another framework or not sure", group: "Compliance: US and industry" },
   { value: "scope", label: "SCOPE", group: "Platforms" },
   { value: "signal", label: "SIGNAL", group: "Platforms" },
