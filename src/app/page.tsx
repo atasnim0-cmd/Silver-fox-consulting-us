@@ -271,7 +271,7 @@ export default function HomePage() {
             <SectionHeader
               eyebrow="Industries"
               title="Focused on the industries that keep Texas running."
-              intro="Energy, healthcare, defense, finance, technology and government each carry their own threats, regulators and constraints. We plan our work around them."
+              intro="Energy, healthcare, aviation, finance, technology and government each carry their own threats, regulators and constraints. We plan our work around them."
             />
             <ArrowLink href="/industries" className="shrink-0">
               All industries

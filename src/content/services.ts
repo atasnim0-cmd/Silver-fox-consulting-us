@@ -184,7 +184,7 @@ export const services: Service[] = [
     ],
     frameworks: ["cmmc", "nist-csf", "nist-800-53", "soc-2", "iso-27001", "iso-9001", "hipaa", "tx-ramp"],
     platforms: ["scope", "range"],
-    industries: ["defense-contractors", "financial-services", "healthcare", "state-local-government"],
+    industries: ["aviation-aerospace", "financial-services", "healthcare", "state-local-government"],
     faqs: [
       {
         q: "What does a virtual CISO do?",
@@ -438,7 +438,7 @@ export const services: Service[] = [
     ],
     frameworks: ["pci-dss", "soc-2", "cmmc", "hipaa", "iso-27001", "nist-800-218"],
     platforms: ["scope", "range"],
-    industries: ["technology-saas", "financial-services", "healthcare", "defense-contractors", "energy-utilities"],
+    industries: ["technology-saas", "financial-services", "healthcare", "aviation-aerospace", "energy-utilities"],
     faqs: [
       {
         q: "What is the difference between a vulnerability scan and a penetration test?",
@@ -904,7 +904,7 @@ export const services: Service[] = [
     ],
     frameworks: ["nist-800-171", "cmmc", "hipaa", "soc-2", "pci-dss", "nist-800-53"],
     platforms: ["scope", "signal"],
-    industries: ["financial-services", "healthcare", "defense-contractors", "technology-saas"],
+    industries: ["financial-services", "healthcare", "aviation-aerospace", "technology-saas"],
     faqs: [
       {
         q: "We already use MFA. Is that enough?",
@@ -1353,7 +1353,7 @@ export const services: Service[] = [
       "financial-services",
       "energy-utilities",
       "state-local-government",
-      "defense-contractors",
+      "aviation-aerospace",
     ],
     faqs: [
       {

@@ -130,9 +130,9 @@ export default function AboutPage() {
             <SectionHeader eyebrow="Why Texas" title="Close to the industries we protect." />
             <div className="mt-6 space-y-5 text-lg leading-relaxed">
               <p>
-                Texas runs much of the country&apos;s energy production, a large share of its defense manufacturing,
-                some of its largest hospital systems and one of its fastest-growing technology sectors. Those industries
-                face serious, well-funded attackers.
+                Texas runs much of the country&apos;s energy production, a large share of its aerospace and defense
+                manufacturing, some of its largest hospital systems and one of its fastest-growing technology sectors.
+                Those industries face serious, well-funded attackers.
               </p>
               <p>
                 Being based here means we know the state&apos;s regulators, industries and pace of business, and we can

@@ -11,7 +11,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata: Metadata = pageMetadata({
   title: "Industries We Serve",
   description:
-    "Cybersecurity for defense contractors, energy and utilities, healthcare, financial services, technology companies and Texas state and local government.",
+    "Cybersecurity for aviation and aerospace, energy and utilities, healthcare, financial services, technology companies and Texas state and local government.",
   path: "/industries",
 });
 

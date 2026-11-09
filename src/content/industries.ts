@@ -2,60 +2,68 @@ import type { Industry } from "./types";
 
 export const industries: Industry[] = [
   {
-    slug: "defense-contractors",
-    name: "Defense & Aerospace",
+    slug: "aviation-aerospace",
+    name: "Aviation & Aerospace",
     blurb:
-      "CMMC readiness, CUI protection and security testing for primes and subcontractors in the defense industrial base.",
-    metaTitle: "Cybersecurity for Defense & Aerospace Contractors",
+      "Security for airlines, airports, MRO providers, manufacturers and the suppliers behind them, from flight operations to CMMC.",
+    metaTitle: "Cybersecurity for Aviation & Aerospace",
     metaDescription:
-      "CMMC readiness, NIST SP 800-171 compliance, CUI protection and incident response for defense and aerospace contractors in Texas and across the U.S.",
+      "Cybersecurity for airlines, airports, MRO providers, aircraft manufacturers and aerospace suppliers in Texas and across the U.S., including CMMC readiness and export-controlled data protection.",
     photo: "jetEngine",
     hero: {
-      eyebrow: "Industries / Defense & Aerospace",
-      title: "Security and CMMC readiness for the defense supply chain.",
+      eyebrow: "Industries / Aviation & Aerospace",
+      title: "Security for the companies that keep aircraft flying.",
       intro: [
-        "Texas is home to major defense and aerospace programs, from aircraft production in Fort Worth to the military cyber community in San Antonio, along with thousands of smaller suppliers that support them.",
-        "Those suppliers now have to demonstrate their cybersecurity through formal assessments. We help them meet CMMC requirements, protect Controlled Unclassified Information and hold up against the nation-state groups that target the defense supply chain.",
+        "Texas is one of the busiest aviation and aerospace states in the country. It has major airline hubs in Dallas, Fort Worth and Houston, aircraft and rotorcraft production in North Texas, human spaceflight work in Houston and thousands of maintenance shops and parts suppliers in between.",
+        "When a system goes down in this industry, flights stop, aircraft sit in the hangar and contracts slip. We help airlines, airports, MRO providers, manufacturers and suppliers protect operations and engineering data and meet the security requirements their regulators and customers set.",
       ],
     },
     pressures: {
-      title: "What defense suppliers are dealing with",
+      title: "What aviation and aerospace companies are dealing with",
       items: [
         {
-          title: "CMMC in contracts",
-          body: "CMMC requirements are moving into DoD solicitations in phases. A missing status can cost you an award, and primes are asking subcontractors for proof.",
+          title: "Operations that cannot stop",
+          body: "Crew scheduling, maintenance tracking, baggage, fueling and flight planning all run on connected systems. An outage or ransomware attack on any one of them can ground aircraft within hours.",
         },
         {
-          title: "Targeted attacks",
-          body: "Nation-state groups go after smaller suppliers because they often hold the same drawings and specifications as the primes, with far less protection around them.",
+          title: "Valuable engineering data",
+          body: "Aircraft designs, specifications and maintenance data are a long-standing target for nation-state groups, who often go after smaller suppliers holding the same drawings as the manufacturer.",
         },
         {
-          title: "72-hour incident reporting",
-          body: "DFARS 252.204-7012 requires cyber incidents affecting covered defense information to be reported to DoD within 72 hours, with images and evidence preserved.",
+          title: "CMMC and export controls",
+          body: "Suppliers to defense programs need a CMMC status to win work, and technical data covered by ITAR or the EAR has to be kept away from anyone not authorized to see it.",
         },
         {
-          title: "False Claims Act exposure",
-          body: "Inaccurate cybersecurity representations to the government can create False Claims Act liability, and enforcement has picked up in recent years.",
+          title: "Regulators and reporting",
+          body: "TSA sets cybersecurity requirements for certain airport and aircraft operators, and DFARS 252.204-7012 requires defense contractors to report cyber incidents to DoD within 72 hours.",
         },
       ],
     },
     work: {
-      title: "How we help defense suppliers",
+      title: "How we help aviation and aerospace companies",
       items: [
-        "CMMC Level 1 and Level 2 readiness",
-        "NIST SP 800-171 gap assessments, SSP and POA&M",
-        "CUI enclave and Microsoft 365 GCC High planning",
-        "Penetration testing of engineering and manufacturing networks",
-        "Incident response plans that meet DFARS reporting rules",
-        "Supplier risk reviews for primes managing their own supply chain",
+        "Security assessments for airlines, airports, charter operators and MRO providers",
+        "Network segmentation and testing for hangar, manufacturing and OT environments",
+        "CMMC Level 1 and Level 2 readiness for aerospace suppliers",
+        "Protection of export-controlled technical data under ITAR and the EAR",
+        "Incident response plans built around flight operations and reporting rules",
+        "Supplier risk reviews for manufacturers managing their own supply chain",
       ],
     },
-    frameworks: ["cmmc", "nist-800-171", "nist-800-53", "nist-csf"],
-    services: ["strategy-risk-compliance", "identity-data-security", "penetration-testing", "incident-response"],
+    frameworks: ["cmmc", "nist-800-171", "iso-9001", "iec-62443", "nist-csf"],
+    services: ["strategy-risk-compliance", "penetration-testing", "managed-detection-response", "incident-response"],
     faqs: [
       {
-        q: "We are a small manufacturer. Does CMMC really apply to us?",
+        q: "We run a repair station, not a defense supplier. Is this relevant to us?",
+        a: "Yes. Repair stations and MRO providers hold maintenance records, customer aircraft data and often parts traceability systems that operators depend on. We scale the work to your size, starting with the systems that would keep aircraft from returning to service if they went down.",
+      },
+      {
+        q: "We are a small aerospace supplier. Does CMMC really apply to us?",
         a: "If you hold a DoD contract or subcontract and receive Federal Contract Information or Controlled Unclassified Information, it very likely does. Many small suppliers only need Level 1, which is far less work than Level 2. The first step is confirming what information you actually receive.",
+      },
+      {
+        q: "Do you help with AS9100?",
+        a: "AS9100 builds on ISO 9001. We help aerospace companies with the ISO 9001 foundation and the information security controls their quality system relies on. Certification itself is issued by an accredited certification body.",
       },
     ],
   },

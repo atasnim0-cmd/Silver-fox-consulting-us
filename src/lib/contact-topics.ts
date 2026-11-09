@@ -41,6 +41,7 @@ export const TOPIC_VALUES = TOPICS.map((t) => t.value) as [string, ...string[]];
 /** Maps ?topic= values from links across the site to a form option. */
 const ALIASES: Record<string, string> = {
   platforms: "scope",
+  "aviation-aerospace": "cmmc",
   "defense-contractors": "cmmc",
   "energy-utilities": "iec-62443",
   healthcare: "hipaa",
